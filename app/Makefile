@@ -52,14 +52,14 @@ $(info ************ LOGGING ENABLED ************)
 endif
 
 ifndef COIN
-COIN=ATOM
+COIN=SHR
 endif
 
 $(info COIN  = [$(COIN)])
 
-ifeq ($(COIN),ATOM)
+ifeq ($(COIN),SHR)
 # Main app configuration
-APPNAME = "Cosmos"
+APPNAME = "Shareledger"
 APPPATH = "44'/118'"
 else
 define error_message
@@ -229,7 +229,7 @@ dep/%.d: %.c Makefile
 
 .PHONY: listvariants
 listvariants:
-	@echo VARIANTS COIN ATOM
+	@echo VARIANTS COIN SHR
 
 .PHONY: version
 version:

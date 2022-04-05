@@ -60,6 +60,51 @@ static const key_subst_t value_substitutions[] = {
         {"cosmos-sdk/MsgVote",                        "Vote"},
         {"cosmos-sdk/MsgWithdrawDelegationReward",    "Withdraw Reward"},
         {"cosmos-sdk/MsgWithdrawValidatorCommission", "Withdraw Val. Commission"},
+
+        // asset module
+        {"asset/CreateAsset", "Create Asset"},
+        {"asset/UpdateAsset", "Update Asset"},
+        {"asset/DeleteAsset", "Delete Asset"},
+
+        // booking module
+        {"booking/CreateBooking", "Create Booking"},
+        {"booking/CompleteBooking", "Complete Booking"},
+
+        // document module
+        {"document/CreateDocument", "Create Document"},
+        {"document/CreateDocuments", "Create Multiple Documents"},
+        {"document/RevokeDocument", "Revoke Document"},
+        {"document/UpdateDocument", "Update Document"},
+
+        // electoral module
+        {"electoral/EnrollVoter", "Enroll Validator"},
+        {"electoral/RevokeVoter", "Revoke Validator"},
+        {"electoral/EnrollLoaders", "Enroll SHRP Loaders"},
+        {"electoral/RevokeLoaders", "Revoke SHRP Loaders"},
+        {"electoral/EnrollIdSigners", "Enroll ID Signer"},
+        {"electoral/RevokeIdSigners", "Revoke ID Signer"},
+        {"electoral/EnrollDocIssuers", "Enroll Document Issuers"},
+        {"electoral/RevokeDocIssuers", "Revoke Document Issuers"},
+        {"electoral/EnrollAccountOperators", "Enroll Account Operators"},
+        {"electoral/RevokeAccountOperators", "Revoke Account Operators"},
+
+        // gentlemint module
+        {"gentlemint/BuyShr", "Buy SHR"},
+        {"gentlemint/SetExchange", "Set Exchange Rate"},
+        {"gentlemint/SetLevelFee", "Set Fee Level"},
+        {"gentlemint/DeleteLevelFee", "Delete Fee Level"},
+        {"gentlemint/SetActionLevelFee", "Set Action Fee"},
+        {"gentlemint/DeleteActionLevelFee", "Delete Action Fee"},
+        {"gentlemint/LoadFee", "Load Fee"},
+        {"gentlemint/Load", "Load Token"},
+        {"gentlemint/Send", "Send Token"},
+        {"gentlemint/Burn", "Burn Token"},
+
+        // id module
+        {"id/CreateId", "Create ID"},
+        {"id/CreateIds", "Create Multiple ID"},
+        {"id/UpdateId", "Update ID"},
+        {"id/ReplaceIdOwner", "Replace ID Owner"}
 };
 
 parser_error_t tx_getToken(uint16_t token_index,

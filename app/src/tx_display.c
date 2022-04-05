@@ -489,6 +489,35 @@ static const key_subst_t key_substitutions[] = {
         {"msgs/value/amount",                 "Amount"},
         {"msgs/value/voter",                  "Description"},
         {"msgs/value/option",                 "Option"},
+
+        // gentlemint module
+        // send
+        {"msgs/creator", "Sender"},
+        {"msgs/address", "Receiver"},
+        {"msgs/coins/amount", "Amount"},
+        {"msgs/coins/denom", "Denomination"},
+
+        // buy shr
+        {"msgs/creator", "Buyer"},
+        {"msgs/amount", "Amount"},
+
+        // set exchange rate
+        {"msgs/creator", "Creator"},
+        {"msgs/rate", "Exchange rate"},
+
+        // set fee level
+        {"msgs/level", "Level"},
+
+        // delete fee level
+
+        // set action fee level
+        {"msgs/action", "Action"},
+
+        // msg load fee
+        {"msgs/shrp/denom", "Denomination"},
+        {"msgs/shrp/amount", "Amount"}
+
+        // msg burn
 };
 
 parser_error_t tx_display_make_friendly() {
