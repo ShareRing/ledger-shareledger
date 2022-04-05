@@ -51,7 +51,7 @@ $(info COIN  = [$(COIN)])
 
 ifeq ($(COIN),SHR)
 # Main app configuration
-APPNAME = "Cosmos"
+APPNAME = "Shareledger"
 APPPATH = "44'/118'" --path "44'/60'"
 else
 define error_message

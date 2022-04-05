@@ -67,6 +67,93 @@ static const key_subst_t value_substitutions[] = {
         {"cosmos-sdk/MsgSetWithdrawAddress",          "Withdraw Set Address"},
         {"cosmos-sdk/MsgMultiSend",                   "Multi Send"},
 
+        /********************************
+         *         Asset module         *
+         ********************************/
+        {"asset/CreateAsset", "Create Asset"},
+        {"asset/UpdateAsset", "Update Asset"},
+        {"asset/DeleteAsset", "Delete Asset"},
+
+        /********************************
+         *        Booking module        *
+         ********************************/
+        {"booking/CreateBooking", "Create Booking"},
+        {"booking/CompleteBooking", "Complete Booking"},
+
+        /********************************
+         *        Document module       *
+         ********************************/
+        {"document/CreateDocument", "Create Document"},
+        {"document/CreateDocuments", "Create Multiple Documents"},
+        {"document/RevokeDocument", "Revoke Document"},
+        {"document/UpdateDocument", "Update Document"},
+
+        /********************************
+         *       Electoral module       *
+         ********************************/
+        {"electoral/EnrollVoter", "Enroll Validator"},
+        {"electoral/RevokeVoter", "Revoke Validator"},
+        {"electoral/EnrollLoaders", "Enroll SHRP Loaders"},
+        {"electoral/RevokeLoaders", "Revoke SHRP Loaders"},
+        {"electoral/EnrollIdSigners", "Enroll ID Signer"},
+        {"electoral/RevokeIdSigners", "Revoke ID Signer"},
+        {"electoral/EnrollDocIssuers", "Enroll Document Issuers"},
+        {"electoral/RevokeDocIssuers", "Revoke Document Issuers"},
+        {"electoral/EnrollAccountOperators", "Enroll Account Operators"},
+        {"electoral/RevokeAccountOperators", "Revoke Account Operators"},
+        {"electoral/EnrollApprover", "Enroll Approver"},
+        {"electoral/RevokeApprover", "Revoke Approver"},
+
+        /********************************
+         *      Gentlemint module       *
+         ********************************/
+        {"gentlemint/BuyShr", "Buy SHR"},
+        {"gentlemint/SetExchange", "Set Exchange Rate"},
+        {"gentlemint/SetLevelFee", "Set Fee Level"},
+        {"gentlemint/DeleteLevelFee", "Delete Fee Level"},
+        {"gentlemint/SetActionLevelFee", "Set Action Fee"},
+        {"gentlemint/DeleteActionLevelFee", "Delete Action Fee"},
+        {"gentlemint/LoadFee", "Load Fee"},
+        {"gentlemint/Load", "Load Token"},
+        {"gentlemint/Send", "Send Token"},
+        {"gentlemint/Burn", "Burn Token"},
+
+        /********************************
+         *           Id module          *
+         ********************************/
+        {"id/CreateId", "Create ID"},
+        {"id/CreateIds", "Create Multiple ID"},
+        {"id/UpdateId", "Update ID"},
+        {"id/ReplaceIdOwner", "Replace ID Owner"},
+
+        /********************************
+         *             Swap             *
+         ********************************/
+        {"swap/RequestOut", "Request Swap Out"},
+        {"swap/ApproveOut", "Approve Swap Out"},
+        {"swap/Deposit", "Deposit"},
+        {"swap/Withdraw", "Withdraw"},
+        {"swap/CreateSchema", "Create Schema"},
+        {"swap/UpdateSchema", "Update Schema"},
+        {"swap/DeleteSchema", "Delete Schema"},
+        {"swap/Cancel", "Cancel"},
+        {"swap/Reject", "Reject"},
+        {"swap/RequestIn", "Request Swap In"},
+        {"swap/ApproveIn", "Approve Swap In"},
+        {"swap/CompleteBatch", "Complete Batch"},
+        {"swap/UpdateSwapFee", "Update Swap Fee"},
+        {"swap/CancelBatches", "Cancel Batches"},
+
+        /********************************
+         *             CosmWasm         *
+         ********************************/
+        {"wasm/StoreCode", "Store Code"},
+        {"wasm/InstantiateContract", "Instantiate Contract"},
+        {"wasm/InstantiateContract2", "Instantiate Contract 2"},
+        {"wasm/ExecuteContract", "Execute Contract"},
+        {"wasm/MigrateContract", "Migrate Contract"},
+        {"wasm/UpdateAdmin", "Update Admin"},
+        {"wasm/ClearAdmin", "Clear Admin"},
 };
 
 parser_error_t tx_getToken(uint16_t token_index,
