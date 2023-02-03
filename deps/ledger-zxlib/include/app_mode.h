@@ -28,9 +28,17 @@ bool app_mode_expert();
 
 void app_mode_set_expert(uint8_t val);
 
+bool app_mode_account();
+
+void app_mode_set_account(uint8_t val);
+
 bool app_mode_secret();
 
 void app_mode_set_secret(uint8_t val);
+
+bool app_mode_shortcut();
+
+void app_mode_set_shortcut(uint8_t val);
 
 #ifdef __cplusplus
 }
