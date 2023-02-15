@@ -497,184 +497,107 @@ static const key_subst_t key_substitutions[] = {
         {"msgs/value/voter",                  "Description"},
         {"msgs/value/option",                 "Option"},
 
+
         /********************************
-        ******* Gentlemint module *******
-        *********************************/
-        /* Type: MsgSend */
-        {"msgs/creator", "Sender"},
-        {"msgs/address", "Receiver"},
-        {"msgs/coins/amount", "Send Amount"},
-        {"msgs/coins/denom", "Send Denomination"},
+         * Generic messages attribute   *
+         * ******************************/
+        {"msgs/creator", "Tx Creator"},
+        {"msgs/address", "Address"},
+        {"msgs/rate", "Rate"},
 
-        /* Type: MsgBuyShr */
-        {"msgs/creator", "Buyer"},
-        {"msgs/amount", "Buy Amount"},
-
-        /* Type: MsgDeleteActionLevelFee */
-        {"msgs/creator", "Delete Action Level Fee Creator"},
-        {"msgs/action", "Delete Level Fee Action"},
-
-        /* Type: MsgSetExchange */
-        {"msgs/creator", "Set Exchange Creator"},
-        {"msgs/rate", "Exchange Rate"},
-
-        /* Type: MsgSetLevelFee */
-        {"msgs/level", "Set Level Fee"},
+        /********************************
+         *        Gentlemint module     *
+         ********************************/
+        {"msgs/amount", "Amount"},
+        {"msgs/action", "Action"},
+        {"msgs/rate", "Rate"},
+        {"msgs/level", "Level"},
         {"msgs/fee", "Fee"},
-        {"msgs/creator", "Set Level Fee Creator"},
-
-        /* Type: MsgDeleteLevelFee */
-        {"msgs/level", "Delete Level Fee"},
-        {"msgs/creator", "Delete Level Fee Creator"},
-
-        /* Type: MsgSetActionLevelFee */
-        {"msgs/action", "Set Level Fee Action"},
-        {"msgs/level", "Set Action Level Fee"},
-        {"msgs/creator", "Set Action Level Fee Creator"},
-
-        /* Type: MsgLoadFee */
         {"msgs/shrp", "SHRP"},
-        {"msgs/creator", "Load Fee Creator"},
-
-        /* Type: MsgBurn */
-        {"msgs/coins/denom", "Burn Denomination"},
-        {"msgs/coins/amount", "Burn Amount"},
-        {"msgs/creator", "Burn Creator"},
-
-         /* Type: MsgLoad */
-        {"msgs/coins/denom", "Load Denomination"},
-        {"msgs/coins/amount", "Load Amount"},
-        {"msgs/creator", "Load Creator"},
-        {"msgs/address", "Load Address"},
+        {"msgs/coins/amount", "Coin Amount"},
+        {"msgs/coins/denom", "Coin Denomination"},
 
         /********************************
-        ********* Asset module **********
-        *********************************/
-        /* Type: MsgCreateAsset */
-        {"msgs/creator", "Asset Creator"},
-        {"msgs/hash", "Create Asset Hash"},
-        {"msgs/UUID", "Create Asset UUID"},
-        {"msgs/status", "Create Asset Status"},
-        {"msgs/rate", "Create Asset Rate"},
-
-        /* Type: MsgUpdateAsset */
-        {"msgs/creator", "Update Asset Creator"},
-        {"msgs/hash", "Update Asset Hash"},
-        {"msgs/UUID", "Update Asset UUID"},
-        {"msgs/status", "Update Asset Status"},
-        {"msgs/rate", "Update Asset Rate"},
-
-        /* Type: MsgDeleteAsset */
-        {"msgs/owner", "Delete Asset Owner"},
-        {"msgs/UUID", "Delete Asset UUID"},
+         *        Asset module          *
+         ********************************/
+        {"msgs/hash", "Hash"},
+        {"msgs/status", "Status"},
+        {"msgs/owner", "Owner"},
+        {"msgs/UUID", "UUID"},
 
         /********************************
-        ********* Booking module ********
-        *********************************/
-        /* Type: MsgCreateBooking */
-        {"msgs/UUID", "Booking UUID"},
-        {"msgs/booker", "Create Booker"},
-        {"msgs/duration", "Booking Duration"},
-
-        /* Type: MsgCompleteBooking */
-        {"msgs/bookID", "Booking ID"},
-        {"msgs/booker", "Updated Booker"},
+         *        Booking module        *
+         ********************************/
+        {"msgs/booker", "Booker"},
+        {"msgs/duration", "Duration"},
+        {"msgs/bookID", "BookID"},
 
         /********************************
-        ******** Document module ********
-        *********************************/
-        /* Type: MsgCreateDocument */
-        {"msgs/data", "Create Document Data"},
-        {"msgs/holder", "Create Document Holder"},
-        {"msgs/issuer", "Create Document Issuer"},
-        {"msgs/proof", "Create Document Proof"},
-
-        /* Type: MsgCreateDocuments */
-        {"msgs/data", "Array of Data"},
-        {"msgs/holder", "Create Documents Holder Array"},
-        {"msgs/issuer", "Create Documents Issuer Array"},
-        {"msgs/proof", "Create Documents Proof Array"},
-
-        /* Type: MsgUpdateDocument */
-        {"msgs/data", "Update Document Data"},
-        {"msgs/holder", "Update Document Holder"},
-        {"msgs/issuer", "Update Document Issuer"},
-        {"msgs/proof", "Update Document Proof"},
-
-        /* Type: MsgRevokeDocument */
-        {"msgs/holder", "Revoke Document Holder"},
-        {"msgs/issuer", "Revoke Document Issuer"},
-        {"msgs/proof", "Revoke Document Proof"},
+         *       Document module        *
+         ********************************/
+        {"msgs/data", "Data"},
+        {"msgs/holder", "Holder"},
+        {"msgs/issuer", "Issuer"},
+        {"msgs/proof", "Proof"},
 
         /********************************
-        ******* Electoral module ********
-        *********************************/
-        /* Type: MsgEnrollVoter */
-        {"msgs/creator", "Enroll Voter Creator"},
-        {"msgs/address", "Enroll Voter Address"},
-
-        /* Type: MsgRevokeVoter */
-        {"msgs/creator", "Revoke Voter Creator"},
-        {"msgs/address", "Revoke Voter Address"},
-
-        /* Type: MsgEnrollLoaders */
-        {"msgs/creator", "Enroll Loaders Creator"},
-        {"msgs/addresses", "Enroll Loaders Addresses"},
-
-        /* Type: MsgRevokeLoaders */
-        {"msgs/creator", "Revoke Loaders Creator"},
-        {"msgs/addresses", "Revoke Loaders Addresses"},
-
-        /* Type: MsgEnrollIdSigners */
-        {"msgs/creator", "Enroll ID Signers Creator"},
-        {"msgs/addresses", "Enroll ID Signers Addresses"},
-
-        /* Type: MsgRevokeIdSigners */
-        {"msgs/creator", "Revoke ID Signers Creator"},
-        {"msgs/addresses", "Revoke ID Signers Addresses"},
-
-       /* Type: MsgEnrollDocIssuers */
-        {"msgs/creator", "Enroll Doc Issuers Creator"},
-        {"msgs/addressed", "Enroll Doc Issuers Addresses"},
-
-        /* Type: MsgRevokeDocIssuers */
-        {"msgs/creator", "Revoke Doc Issuers Creator"},
-        {"msgs/addresses", "Revoke Doc Issuers Addresses"},
-
-        /* Type: MsgEnrollAccountOperators */
-        {"msgs/creator", "Enroll Account Operators Creator"},
-        {"msgs/addresses", "Enroll Account Operators Addresses"},
-
-        /* Type: MsgRevokeAccountOperators */
-        {"msgs/creator", "Revoke Account Operators Creator"},
-        {"msgs/addresses", "Revoke Account Operators Addresses"},
+         *      Electoral module        *
+         ********************************/
+        {"msgs/addresses", "Addresses"},
 
         /********************************
-        *********** Id module ***********
-        *********************************/
-        /* Type: MsgCreateId */
-        {"msgs/issuerAddress", "Create Id Issuer Address"},
-        {"msgs/backupAddress", "Create Id Backup Address"},
-        {"msgs/extraData", "Create Id Extra Data"},
-        {"msgs/id", "Create Id ID"},
-        {"msgs/ownerAddress", "Create Id Owner Address"},
+         *          Id module           *
+         ********************************/
+        {"msgs/issuerAddress", "Issuer Address"},
+        {"msgs/backupAddress", "Backup Address"},
+        {"msgs/extraData", "Extra Data"},
+        {"msgs/id", "ID"},
+        {"msgs/ownerAddress", "Owner Address"},
 
-        /*Type: MsgCreateIds*/
-        {"msgs/issuerAddress", "Create Ids Issuer Address"},
-        {"msgs/backupAddress", "Create Ids Backup Address Array"},
-        {"msgs/extraData", "Create Ids Extra Data Array"},
-        {"msgs/id", "Create Ids ID Array"},
-        {"msgs/ownerAddress", "Create Ids Owner Address Array"},
+        /********************************
+         *         Swap module          *
+         ********************************/
+        {"msgs/destAddress", "Destination Address"},
+        {"msgs/network", "Network"},
+        {"msgs/amount/amount", "Swap Amount"},
+        {"msgs/amount/denom", "Swap Denomination"},
+        {"msgs/fee/amount", "Fee Amount"},
+        {"msgs/fee/denom", "Fee Denomination"},
+        {"msgs/srcAddress", "Source Address"},
+        {"msgs/signature", "Signature"},
+        {"msgs/ids", "IDs"},
+        {"msgs/batchId", "BatchID"},
+        {"msgs/schema", "Schema"},
+        {"msgs/in/denom", "Input Denomination"},
+        {"msgs/in/amount", "Swap In Fee"},
+        {"msgs/out/denom", "Output Denomination"},
+        {"msgs/out/amount", "Swap Out Fee"},
+        {"msgs/contractExponent", "Contract Exponent"},
+        {"msgs/receiver", "Receiver"},
+        /*Additional messages for swap in*/
+        {"msgs/txEvents/logIndex", "Index"},
+        {"msgs/txEvents/sender", "TxSender"},
+        {"msgs/txEvents/txHash", "TxHash"},
 
-        /* Type: MsgUpdateId */
-        {"msgs/issuerAddress", "Update Id Issuer Address"},
-        {"msgs/id", "Update Id ID"},
-        {"msgs/extraData", "Update Id Extra Data"},
-
-        /* Type: MsgReplaceIdOwner */
-        {"msgs/backupAddress", "Replace Id Owner Backup Address"},
-        {"msgs/id", "Replace Id Owner ID"},
-        {"msgs/ownerAddress", "Replace Id Owner Owner Address"}
+        /********************************
+         *      Cosmwasm module         *
+         ********************************/
+        {"msgs/sender", "Sender"},
+        {"msgs/wasm_byte_code", "Wasm Byte Code"},
+        {"msgs/instantiate_permission/permission", "Instantiate Permission"},
+        {"msgs/instantiate_permission/address", "Instantiate Permission Address"},
+        {"msgs/instantiate_permission/addresses", "Instantiate Permission Addresses"},
+        {"msgs/admin", "Admin"},
+        {"msgs/code_id", "Code ID"},
+        {"msgs/label", "Label"},
+        {"msgs/msg", "Message"},
+        {"msgs/funds/denom", "Funds Denomination"},
+        {"msgs/funds/amount", "Funds Amount"},
+        {"msgs/label", "Label"},
+        {"msgs/salt", "Salt"},
+        {"msgs/fix_msg", "Fix Message"},
+        {"msgs/contract", "Contract"},
+        {"msgs/new_admin", "New Admin"},
 };
 
 parser_error_t tx_display_make_friendly() {
