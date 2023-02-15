@@ -545,34 +545,107 @@ static const key_subst_t key_substitutions[] = {
         {"msgs/value/voter",                  "Description"},
         {"msgs/value/option",                 "Option"},
 
-        // gentlemint module
-        // send
-        {"msgs/creator", "Sender"},
-        {"msgs/address", "Receiver"},
-        {"msgs/coins/amount", "Amount"},
-        {"msgs/coins/denom", "Denomination"},
 
-        // buy shr
-        {"msgs/creator", "Buyer"},
+        /********************************
+         * Generic messages attribute   *
+         * ******************************/
+        {"msgs/creator", "Tx Creator"},
+        {"msgs/address", "Address"},
+        {"msgs/rate", "Rate"},
+
+        /********************************
+         *        Gentlemint module     *
+         ********************************/
         {"msgs/amount", "Amount"},
-
-        // set exchange rate
-        {"msgs/creator", "Creator"},
-        {"msgs/rate", "Exchange rate"},
-
-        // set fee level
-        {"msgs/level", "Level"},
-
-        // delete fee level
-
-        // set action fee level
         {"msgs/action", "Action"},
+        {"msgs/rate", "Rate"},
+        {"msgs/level", "Level"},
+        {"msgs/fee", "Fee"},
+        {"msgs/shrp", "SHRP"},
+        {"msgs/coins/amount", "Coin Amount"},
+        {"msgs/coins/denom", "Coin Denomination"},
 
-        // msg load fee
-        {"msgs/shrp/denom", "Denomination"},
-        {"msgs/shrp/amount", "Amount"}
+        /********************************
+         *        Asset module          *
+         ********************************/
+        {"msgs/hash", "Hash"},
+        {"msgs/status", "Status"},
+        {"msgs/owner", "Owner"},
+        {"msgs/UUID", "UUID"},
 
-        // msg burn
+        /********************************
+         *        Booking module        *
+         ********************************/
+        {"msgs/booker", "Booker"},
+        {"msgs/duration", "Duration"},
+        {"msgs/bookID", "BookID"},
+
+        /********************************
+         *       Document module        *
+         ********************************/
+        {"msgs/data", "Data"},
+        {"msgs/holder", "Holder"},
+        {"msgs/issuer", "Issuer"},
+        {"msgs/proof", "Proof"},
+
+        /********************************
+         *      Electoral module        *
+         ********************************/
+        {"msgs/addresses", "Addresses"},
+
+        /********************************
+         *          Id module           *
+         ********************************/
+        {"msgs/issuerAddress", "Issuer Address"},
+        {"msgs/backupAddress", "Backup Address"},
+        {"msgs/extraData", "Extra Data"},
+        {"msgs/id", "ID"},
+        {"msgs/ownerAddress", "Owner Address"},
+
+        /********************************
+         *         Swap module          *
+         ********************************/
+        {"msgs/destAddress", "Destination Address"},
+        {"msgs/network", "Network"},
+        {"msgs/amount/amount", "Swap Amount"},
+        {"msgs/amount/denom", "Swap Denomination"},
+        {"msgs/fee/amount", "Fee Amount"},
+        {"msgs/fee/denom", "Fee Denomination"},
+        {"msgs/srcAddress", "Source Address"},
+        {"msgs/signature", "Signature"},
+        {"msgs/ids", "IDs"},
+        {"msgs/batchId", "BatchID"},
+        {"msgs/schema", "Schema"},
+        {"msgs/in/denom", "Input Denomination"},
+        {"msgs/in/amount", "Swap In Fee"},
+        {"msgs/out/denom", "Output Denomination"},
+        {"msgs/out/amount", "Swap Out Fee"},
+        {"msgs/contractExponent", "Contract Exponent"},
+        {"msgs/receiver", "Receiver"},
+        /*Additional messages for swap in*/
+        {"msgs/txEvents/logIndex", "Index"},
+        {"msgs/txEvents/sender", "TxSender"},
+        {"msgs/txEvents/txHash", "TxHash"},
+
+        /********************************
+         *      Cosmwasm module         *
+         ********************************/
+        {"msgs/sender", "Sender"},
+        {"msgs/wasm_byte_code", "Wasm Byte Code"},
+        {"msgs/instantiate_permission/permission", "Instantiate Permission"},
+        {"msgs/instantiate_permission/address", "Instantiate Permission Address"},
+        {"msgs/instantiate_permission/addresses", "Instantiate Permission Addresses"},
+        {"msgs/admin", "Admin"},
+        {"msgs/code_id", "Code ID"},
+        {"msgs/label", "Label"},
+        {"msgs/msg", "Message"},
+        {"msgs/funds/denom", "Funds Denomination"},
+        {"msgs/funds/amount", "Funds Amount"},
+        {"msgs/label", "Label"},
+        {"msgs/salt", "Salt"},
+        {"msgs/fix_msg", "Fix Message"},
+        {"msgs/contract", "Contract"},
+        {"msgs/new_admin", "New Admin"},
 };
 
 parser_error_t tx_display_make_friendly() {
