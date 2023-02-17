@@ -50,7 +50,11 @@ describe('Textual', function () {
       const tx = Buffer.from(tx_sign_textual, 'hex')
 
       // get address / publickey
-      const respPk = await app.getAddressAndPubKey(path, 'cosmos')
+<<<<<<< HEAD
+      const respPk = await app.getAddressAndPubKey(path, hrp)
+=======
+      const respPk = await app.getAddressAndPubKey(path, 'shareledger')
+>>>>>>> 6a39a8a (SHRL-377: Update testcases)
       expect(respPk.return_code).toEqual(0x9000)
       expect(respPk.error_message).toEqual('No errors')
       console.log(respPk)
@@ -132,6 +136,7 @@ describe('Textual', function () {
       await sim.close()
     }
   })
+<<<<<<< HEAD
 
   test.concurrent.each(TEXTUAL_MODELS)('sign basic textual eth ', async function (m) {
     const sim = new Zemu(m.path)
@@ -282,3 +287,7 @@ describe('Textual', function () {
     }
   })
 })
+=======
+ })
+
+>>>>>>> 6a39a8a (SHRL-377: Update testcases)

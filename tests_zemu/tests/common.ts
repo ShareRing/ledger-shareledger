@@ -308,57 +308,56 @@ export const ibc_denoms = {
 }
 
 export const setWithdrawAddress = {
-  account_number: '8',
-  chain_id: 'testing',
-  fee: {
-    amount: [
+    account_number: '489',
+    chain_id: 'ShareRing-LifeStyle',
+    fee: {
+      amount: [
+        {
+          amount: '8000000000',
+          denom: 'nshr'
+        }
+      ],
+      gas: '200000'
+    },
+    memo: '',
+    msgs: [
       {
-        amount: '5000',
-        denom: 'uatom'
+        type: 'cosmos-sdk/MsgSetWithdrawAddress',
+        value: {
+          delegator_address: 'shareledger1s929xap5hprh8df4aztucv4z7dn205t6nufdlc',
+          withdraw_address: 'shareledger1843m5fxa3qthtpqs8a6w58ppxswnccn2u7psac'
+        }
+      },
+      {
+        type: 'cosmos-sdk/MsgWithdrawDelegationReward',
+        value: {
+          delegator_address: 'shareledger1s929xap5hprh8df4aztucv4z7dn205t6nufdlc',
+          validator_address: 'shareledgervaloper1w4l5fchs69d9avlgvdehq9ypvdh4xyeveusq8r'
+        }
       }
     ],
-    gas: '200000'
-  },
-  memo: '',
-  msgs: [
-    {
-      type: 'cosmos-sdk/MsgSetWithdrawAddress',
-      value: {
-        delegator_address: 'cosmos1hr9x0sjvel6z3vt9qny8sdd5gnnlgk0p69d6cv',
-        withdraw_address: 'cosmos12d64j98tjjpqkx70r08aspc4nvntqp2w6wr2de'
-      }
-    },
-    {
-      type: 'cosmos-sdk/MsgWithdrawDelegationReward',
-      value: {
-        delegator_address: 'cosmos1hr9x0sjvel6z3vt9qny8sdd5gnnlgk0p69d6cv',
-        validator_address: 'cosmosvaloper13dr26wdygna3s8fdl5tlc45m2le2ydyddxzj49'
-      }
-    }
-  ],
-  sequence: '7'
-}
+    sequence: '3'
+  }
 
-export const cliGovDeposit = {
-  account_number: '8',
-  chain_id: 'my-chain',
-  fee: {
-    amount: [],
-    gas: '200000'
-  },
-  memo: 'A B C',
-  msgs: [
-    {
-      type: 'cosmos-sdk/MsgDeposit',
-      value: {
-        amount: [{
-          amount: '10',
-          denom: 'stake',
-        }],
-        depositor: 'cosmos1xl2256vdh0j68khz9wq88hnyqcq0f5f4za2480',
-        proposal_id: '1'
-      }
+  export const cliGovDeposit = {
+    account_number: '480',
+    chain_id: 'ShareRing-LifeStyle',
+    fee: {
+      amount: [],
+      gas: '200000'
     },
-  ],
-  sequence: '2'
-}
+    memo: 'A B C',
+    msgs: [
+      {
+        type: 'shareledger.swap.MsgDeposit',
+        value: {
+          amount: [{
+            amount: '100',
+            denom: 'shr',
+          }],
+          creator: 'shareledger1843m5fxa3qthtpqs8a6w58ppxswnccn2u7psac',
+        }
+      },
+    ],
+    sequence: '5'
+  }
