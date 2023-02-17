@@ -16,7 +16,7 @@ You can also visit [Zondax Hub](https://hub.zondax.ch/cosmos) to test any of the
 
 This project contains the Cosmos app for Ledger Nano S, Nano S+, X and Stax.
 
-- Ledger Nano S/S+/X/Stax Cosmos app
+- Ledger Nano S/S+/X/Stax Shareledger app
 - Specs / Documentation
 - C++ unit tests
 - Zemu tests
