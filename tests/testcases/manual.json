@@ -148,7 +148,7 @@
     "name": "completeTransfer",
     "tx": {
       "account_number": "0",
-      "chain_id": "cosmoshub-4",
+      "chain_id": "ShareRing-LifeStyle",
       "fee": {
         "amount": [
           {
@@ -260,7 +260,7 @@
     "name": "completeTransferNoMemo",
     "tx": {
       "account_number": "0",
-      "chain_id": "cosmoshub-4",
+      "chain_id": "ShareRing-LifeStyle",
       "fee": {
         "amount": [
           {
@@ -371,7 +371,7 @@
     "name": "completeTransferEmptyMemo",
     "tx": {
       "account_number": "0",
-      "chain_id": "cosmoshub-4",
+      "chain_id": "ShareRing-LifeStyle",
       "fee": {
         "amount": [
           {
@@ -512,7 +512,7 @@
     "name": "multipleTransfers",
     "tx": {
       "account_number": "0",
-      "chain_id": "cosmoshub-4",
+      "chain_id": "ShareRing-LifeStyle",
       "fee": {
         "amount": [
           {
@@ -594,13 +594,13 @@
   {
     "name": "delegationExpert",
     "tx": {
-      "account_number": "6571",
-      "chain_id": "cosmoshub-4",
+      "account_number": "480",
+      "chain_id": "ShareRing-LifeStyle",
       "fee": {
         "amount": [
           {
-            "amount": "5000",
-            "denom": "uatom"
+            "amount": "8",
+            "denom": "shr"
           }
         ],
         "gas": "200000"
@@ -611,15 +611,15 @@
           "type": "cosmos-sdk/MsgDelegate",
           "value": {
             "amount": {
-              "amount": "1000000",
-              "denom": "uatom"
+              "amount": "10",
+              "denom": "shr"
             },
-            "delegator_address": "cosmos102hty0jv2s29lyc4u0tv97z9v298e24t3vwtpl",
-            "validator_address": "cosmosvaloper1grgelyng2v6v3t8z87wu3sxgt9m5s03xfytvz7"
+            "delegator_address": "shareledger1s929xap5hprh8df4aztucv4z7dn205t6nufdlc",
+            "validator_address": "shareledgervaloper1w4l5fchs69d9avlgvdehq9ypvdh4xyeveusq8r"
           }
         }
       ],
-      "sequence": "1"
+      "sequence": "3"
     },
     "parsingErr": "No error",
     "validationErr": "No error",
@@ -628,13 +628,13 @@
       "1 | Account : 6571",
       "2 | Sequence : 1",
       "3 | Type : Delegate",
-      "4 | Amount : 1000000 uatom",
-      "5 | Delegator [1/2] : cosmos102hty0jv2s29lyc4u0tv97z9v298e24t",
-      "5 | Delegator [2/2] : 3vwtpl",
-      "6 | Validator [1/2] : cosmosvaloper1grgelyng2v6v3t8z87wu3sxgt",
-      "6 | Validator [2/2] : 9m5s03xfytvz7",
+      "4 | Amount : 10 shr",
+      "5 | Delegator [1/2] : shareledger1s929xap5hprh8df4aztucv",
+      "5 | Delegator [2/2] : 4z7dn205t6nufdlc",
+      "6 | Validator [1/2] : shareledgervaloper1w4l5fchs69d9avl",
+      "6 | Validator [2/2] : gvdehq9ypvdh4xyeveusq8r",
       "7 | Memo : Zondax.ch",
-      "8 | Fee : 5000 uatom",
+      "8 | Fee : 8 shr",
       "9 | Gas : 200000"
     ],
     "expert": true
@@ -642,13 +642,13 @@
   {
     "name": "delegationDifferentChain",
     "tx": {
-      "account_number": "6571",
+      "account_number": "480",
       "chain_id": "otherhub",
       "fee": {
         "amount": [
           {
-            "amount": "5000",
-            "denom": "uatom"
+            "amount": "8",
+            "denom": "shr"
           }
         ],
         "gas": "200000"
@@ -662,8 +662,8 @@
               "amount": "1000000",
               "denom": "uatom"
             },
-            "delegator_address": "cosmos102hty0jv2s29lyc4u0tv97z9v298e24t3vwtpl",
-            "validator_address": "cosmosvaloper1grgelyng2v6v3t8z87wu3sxgt9m5s03xfytvz7"
+            "delegator_address": "shareledger1843m5fxa3qthtpqs8a6w58ppxswnccn2u7psac",
+            "validator_address": "shareledgervaloper1grgelyng2v6v3t8z87wu3sxgt9m5s03xfytvz7"
           }
         }
       ],
@@ -677,12 +677,12 @@
       "2 | Sequence : 1",
       "3 | Type : Delegate",
       "4 | Amount : 1000000 uatom",
-      "5 | Delegator [1/2] : cosmos102hty0jv2s29lyc4u0tv97z9v298e24t",
-      "5 | Delegator [2/2] : 3vwtpl",
-      "6 | Validator [1/2] : cosmosvaloper1grgelyng2v6v3t8z87wu3sxgt",
-      "6 | Validator [2/2] : 9m5s03xfytvz7",
+      "5 | Delegator [1/2] : shareledger1843m5fxa3qthtpqs8a6w58",
+      "5 | Delegator [2/2] : ppxswnccn2u7psac",
+      "6 | Validator [1/2] : shareledgervaloper1grgelyng2v6v3t8",
+      "6 | Validator [2/2] : z87wu3sxgt9m5s03xfytvz7",
       "7 | Memo : Zondax.ch",
-      "8 | Fee : 5000 uatom",
+      "8 | Fee : 8 shr",
       "9 | Gas : 200000"
     ],
     "expert": false
@@ -691,12 +691,12 @@
     "name": "delegation",
     "tx": {
       "account_number": "6571",
-      "chain_id": "cosmoshub-4",
+      "chain_id": "ShareRing-LifeStyle",
       "fee": {
         "amount": [
           {
-            "amount": "5000",
-            "denom": "uatom"
+            "amount": "8",
+            "denom": "shr"
           }
         ],
         "gas": "200000"
@@ -707,11 +707,11 @@
           "type": "cosmos-sdk/MsgDelegate",
           "value": {
             "amount": {
-              "amount": "1000000",
-              "denom": "uatom"
+              "amount": "1000000000",
+              "denom": "nshr"
             },
-            "delegator_address": "cosmos102hty0jv2s29lyc4u0tv97z9v298e24t3vwtpl",
-            "validator_address": "cosmosvaloper1grgelyng2v6v3t8z87wu3sxgt9m5s03xfytvz7"
+            "delegator_address": "shareledger1s929xap5hprh8df4aztucv4z7dn205t6nufdlc",
+            "validator_address": "shareledgervaloper1w4l5fchs69d9avlgvdehq9ypvdh4xyeveusq8r"
           }
         }
       ],
@@ -721,13 +721,13 @@
     "validationErr": "No error",
     "expected": [
       "0 | Type : Delegate",
-      "1 | Amount : 1.000000 ATOM",
-      "2 | Delegator [1/2] : cosmos102hty0jv2s29lyc4u0tv97z9v298e24t",
-      "2 | Delegator [2/2] : 3vwtpl",
-      "3 | Validator [1/2] : cosmosvaloper1grgelyng2v6v3t8z87wu3sxgt",
-      "3 | Validator [2/2] : 9m5s03xfytvz7",
+      "1 | Amount : 1.000000 SHR",
+      "2 | Delegator [1/2] : shareledger1s929xap5hprh8df4aztucv",
+      "2 | Delegator [2/2] : 4z7dn205t6nufdlc",
+      "3 | Validator [1/2] : shareledgervaloper1w4l5fchs69d9avl",
+      "3 | Validator [2/2] : gvdehq9ypvdh4xyeveusq8r",
       "4 | Memo : Zondax.ch",
-      "5 | Fee : 0.005000 ATOM"
+      "5 | Fee : 8 SHR"
     ],
     "expert": false
   },
@@ -780,7 +780,7 @@
     "name": "proposal",
     "tx": {
       "account_number": "2",
-      "chain_id": "cosmoshub-4",
+      "chain_id": "ShareRing-LifeStyle",
       "fee": {
         "amount": [],
         "gas": "500000"
@@ -820,13 +820,13 @@
   {
     "name": "delegation2Expert",
     "tx": {
-      "account_number": "6571",
-      "chain_id": "cosmoshub-4",
+      "account_number": "480",
+      "chain_id": "ShareRing-LifeStyle",
       "fee": {
         "amount": [
           {
-            "amount": "5000",
-            "denom": "uatom"
+            "amount": "8",
+            "denom": "shr"
           }
         ],
         "gas": "200000"
@@ -837,11 +837,11 @@
           "type": "cosmos-sdk/MsgDelegate",
           "value": {
             "amount": {
-              "amount": "1000000",
-              "denom": "uatom"
+              "amount": "10",
+              "denom": "shr"
             },
-            "delegator_address": "cosmos102hty0jv2s29lyc4u0tv97z9v298e24t3vwtpl",
-            "validator_address": "cosmosvaloper1grgelyng2v6v3t8z87wu3sxgt9m5s03xfytvz7"
+            "delegator_address": "shareledger1843m5fxa3qthtpqs8a6w58ppxswnccn2u7psac",
+            "validator_address": "shareledgervaloper1ml6wjyy6hw0gynuzqvvaw4urhcpegcy9xr8002"
           }
         }
       ],
@@ -855,12 +855,12 @@
       "2 | Sequence : 0",
       "3 | Type : Delegate",
       "4 | Amount : 1000000 uatom",
-      "5 | Delegator [1/2] : cosmos102hty0jv2s29lyc4u0tv97z9v298e24t",
-      "5 | Delegator [2/2] : 3vwtpl",
-      "6 | Validator [1/2] : cosmosvaloper1grgelyng2v6v3t8z87wu3sxgt",
-      "6 | Validator [2/2] : 9m5s03xfytvz7",
+      "5 | Delegator [1/2] : shareledger1843m5fxa3qthtpqs8a6w58",
+      "5 | Delegator [2/2] : ppxswnccn2u7psac",
+      "6 | Validator [1/2] : shareledgervaloper1ml6wjyy6hw0gynu",
+      "6 | Validator [2/2] : zqvvaw4urhcpegcy9xr8002",
       "7 | Memo : Delegated with Ledger from union.market",
-      "8 | Fee : 5000 uatom",
+      "8 | Fee : 8 shr",
       "9 | Gas : 200000"
     ],
     "expert": true
@@ -869,12 +869,12 @@
     "name": "delegation2",
     "tx": {
       "account_number": "6571",
-      "chain_id": "cosmoshub-4",
+      "chain_id": "ShareRing-LifeStyle",
       "fee": {
         "amount": [
           {
-            "amount": "5000",
-            "denom": "uatom"
+            "amount": "8000000000",
+            "denom": "nshr"
           }
         ],
         "gas": "200000"
@@ -885,8 +885,8 @@
           "type": "cosmos-sdk/MsgDelegate",
           "value": {
             "amount": {
-              "amount": "1000000",
-              "denom": "uatom"
+              "amount": "1000000000",
+              "denom": "nshr"
             },
             "delegator_address": "cosmos102hty0jv2s29lyc4u0tv97z9v298e24t3vwtpl",
             "validator_address": "cosmosvaloper1grgelyng2v6v3t8z87wu3sxgt9m5s03xfytvz7"
@@ -899,13 +899,13 @@
     "validationErr": "No error",
     "expected": [
       "0 | Type : Delegate",
-      "1 | Amount : 1.000000 ATOM",
+      "1 | Amount : 1.000000 SHR",
       "2 | Delegator [1/2] : cosmos102hty0jv2s29lyc4u0tv97z9v298e24t",
       "2 | Delegator [2/2] : 3vwtpl",
       "3 | Validator [1/2] : cosmosvaloper1grgelyng2v6v3t8z87wu3sxgt",
       "3 | Validator [2/2] : 9m5s03xfytvz7",
       "4 | Memo : Delegated with Ledger from union.market",
-      "5 | Fee : 0.005000 ATOM"
+      "5 | Fee : 8 SHR"
     ],
     "expert": false
   },
@@ -1065,12 +1065,12 @@
     "name": "groupingSmall",
     "tx": {
       "account_number": "108",
-      "chain_id": "cosmoshub-4",
+      "chain_id": "ShareRing-LifeStyle",
       "fee": {
         "amount": [
           {
-            "amount": "600",
-            "denom": "uatom"
+            "amount": "8000000000",
+            "denom": "nshr"
           }
         ],
         "gas": "200000"
@@ -1104,7 +1104,7 @@
       "2 | Validator [2/2] : vjhennyh568ys",
       "3 | Validator [1/2] : cosmosvaloper1x88j7vp2xnw3zec8ur3g4waxy",
       "3 | Validator [2/2] : cyz7m0mahdv3p",
-      "4 | Fee : 0.000600 ATOM"
+      "4 | Fee : 8 SHR"
     ],
     "expert": false
   },
@@ -1186,13 +1186,13 @@
   {
     "name": "grouping_ledger_testcase",
     "tx": {
-      "account_number": "108",
-      "chain_id": "cosmoshub-4",
+      "account_number": "480",
+      "chain_id": "ShareRing-LifeStyle",
       "fee": {
         "amount": [
           {
-            "amount": "600",
-            "denom": "uatom"
+            "amount": "8",
+            "denom": "shr"
           }
         ],
         "gas": "200000"
@@ -1202,33 +1202,33 @@
         {
           "type": "cosmos-sdk/MsgWithdrawDelegationReward",
           "value": {
-            "delegator_address": "cosmos1kky4yzth6gdrm8ga5zlfwhav33yr7hl87jycah",
-            "validator_address": "cosmosvaloper1kn3wugetjuy4zetlq6wadchfhvu3x740ae6z6x"
+            "delegator_address": "shareledger1s929xap5hprh8df4aztucv4z7dn205t6nufdlc",
+            "validator_address": "shareledgervaloper1w4l5fchs69d9avlgvdehq9ypvdh4xyeveusq8r"
           }
         },
         {
           "type": "cosmos-sdk/MsgWithdrawDelegationReward",
           "value": {
-            "delegator_address": "cosmos1kky4yzth6gdrm8ga5zlfwhav33yr7hl87jycah",
-            "validator_address": "cosmosvaloper1sjllsnramtg3ewxqwwrwjxfgc4n4ef9u2lcnj0"
+            "delegator_address": "shareledger1s929xap5hprh8df4aztucv4z7dn205t6nufdlc",
+            "validator_address": "shareledgervaloper1ml6wjyy6hw0gynuzqvvaw4urhcpegcy9xr8002"
           }
         },
         {
           "type": "cosmos-sdk/MsgWithdrawDelegationReward",
           "value": {
-            "delegator_address": "cosmos1kky4yzth6gdrm8ga5zlfwhav33yr7hl87jycah",
-            "validator_address": "cosmosvaloper1ey69r37gfxvxg62sh4r0ktpuc46pzjrm873ae8"
+            "delegator_address": "shareledger1s929xap5hprh8df4aztucv4z7dn205t6nufdlc",
+            "validator_address": "shareledgervaloper1pasya6jtvglu9q36nl3tqh5drqzeh0s9098x32"
           }
         },
         {
           "type": "cosmos-sdk/MsgWithdrawDelegationReward",
           "value": {
-            "delegator_address": "cosmos1kky4yzth6gdrm8ga5zlfwhav33yr7hl87jycah",
-            "validator_address": "cosmosvaloper1648ynlpdw7fqa2axt0w2yp3fk542junl7rsvq6"
+            "delegator_address": "shareledger1s929xap5hprh8df4aztucv4z7dn205t6nufdlc",
+            "validator_address": "shareledgervaloper1pdn82hmc36pqfh5qg8q2vcjc60l7h6w8qzcjqz"
           }
         }
       ],
-      "sequence": "106"
+      "sequence": "5"
     },
     "parsingErr": "No error",
     "validationErr": "No error",
@@ -1237,23 +1237,23 @@
       "1 | Account : 108",
       "2 | Sequence : 106",
       "3 | Type : Withdraw Reward",
-      "4 | Delegator [1/2] : cosmos1kky4yzth6gdrm8ga5zlfwhav33yr7hl8",
-      "4 | Delegator [2/2] : 7jycah",
-      "5 | Validator [1/2] : cosmosvaloper1kn3wugetjuy4zetlq6wadchfh",
-      "5 | Validator [2/2] : vu3x740ae6z6x",
-      "6 | Delegator [1/2] : cosmos1kky4yzth6gdrm8ga5zlfwhav33yr7hl8",
-      "6 | Delegator [2/2] : 7jycah",
-      "7 | Validator [1/2] : cosmosvaloper1sjllsnramtg3ewxqwwrwjxfgc",
-      "7 | Validator [2/2] : 4n4ef9u2lcnj0",
-      "8 | Delegator [1/2] : cosmos1kky4yzth6gdrm8ga5zlfwhav33yr7hl8",
-      "8 | Delegator [2/2] : 7jycah",
-      "9 | Validator [1/2] : cosmosvaloper1ey69r37gfxvxg62sh4r0ktpuc",
-      "9 | Validator [2/2] : 46pzjrm873ae8",
-      "10 | Delegator [1/2] : cosmos1kky4yzth6gdrm8ga5zlfwhav33yr7hl8",
-      "10 | Delegator [2/2] : 7jycah",
-      "11 | Validator [1/2] : cosmosvaloper1648ynlpdw7fqa2axt0w2yp3fk",
-      "11 | Validator [2/2] : 542junl7rsvq6",
-      "12 | Fee : 600 uatom",
+      "4 | Delegator [1/2] : shareledger1s929xap5hprh8df4aztucv",
+      "4 | Delegator [2/2] : 4z7dn205t6nufdlc",
+      "5 | Validator [1/2] : shareledgervaloper1pasya6jtvglu9q3",
+      "5 | Validator [2/2] : 6nl3tqh5drqzeh0s9098x32",
+      "6 | Delegator [1/2] : shareledger1s929xap5hprh8df4aztucv",
+      "6 | Delegator [2/2] : 4z7dn205t6nufdlc",
+      "7 | Validator [1/2] : shareledgervaloper1ml6wjyy6hw0gynu",
+      "7 | Validator [2/2] : zqvvaw4urhcpegcy9xr8002",
+      "8 | Delegator [1/2] : shareledger1s929xap5hprh8df4aztucv",
+      "8 | Delegator [2/2] : 4z7dn205t6nufdlc",
+      "9 | Validator [1/2] : shareledgervaloper1w4l5fchs69d9avl",
+      "9 | Validator [2/2] : gvdehq9ypvdh4xyeveusq8r",
+      "10 | Delegator [1/2] : shareledger1s929xap5hprh8df4aztucv",
+      "10 | Delegator [2/2] : 4z7dn205t6nufdlc",
+      "11 | Validator [1/2] : shareledgervaloper1pdn82hmc36pqfh",
+      "11 | Validator [2/2] : 5qg8q2vcjc60l7h6w8qzcjqz",
+      "12 | Fee : 8 shr",
       "13 | Gas : 200000"
     ],
     "expert": true
@@ -1469,12 +1469,12 @@
     "name": "combined",
     "tx": {
       "account_number": "108",
-      "chain_id": "cosmoshub-4",
+      "chain_id": "ShareRing-LifeStyle",
       "fee": {
         "amount": [
           {
-            "amount": "600",
-            "denom": "uatom"
+            "amount": "8000000000",
+            "denom": "snhr"
           }
         ],
         "gas": "200000"
@@ -1494,7 +1494,7 @@
             "delegator_address": "cosmos19umvgcvk8cxsvzemy239nj9ngc2ltukantgyp3",
             "validator_address": "cosmosvaloper1648ynlpdw7fqa2axt0w2yp3fk542junl7rsvq6",
             "amount": {
-              "denom": "uatom",
+              "denom": "nshr",
               "amount": "20139397"
             }
           }
@@ -1511,10 +1511,10 @@
       "2 | Validator [1/2] : cosmosvaloper1648ynlpdw7fqa2axt0w2yp3fk",
       "2 | Validator [2/2] : 542junl7rsvq6",
       "3 | Type : Delegate",
-      "4 | Amount : 20.139397 ATOM",
+      "4 | Amount : 20.139397 SHR",
       "5 | Validator [1/2] : cosmosvaloper1648ynlpdw7fqa2axt0w2yp3fk",
       "5 | Validator [2/2] : 542junl7rsvq6",
-      "6 | Fee : 0.000600 ATOM"
+      "6 | Fee : 8 SHR"
     ],
     "expert": false
   },
@@ -1732,13 +1732,13 @@
   {
     "name": "MsgWithdrawValidatorCommission",
     "tx": {
-      "account_number": "6571",
-      "chain_id": "cosmoshub-4",
+      "account_number": "489",
+      "chain_id": "ShareRing-LifeStyle",
       "fee": {
         "amount": [
           {
-            "amount": "5000",
-            "denom": "uatom"
+            "amount": "8",
+            "denom": "shr"
           }
         ],
         "gas": "200000"
@@ -1748,20 +1748,20 @@
         {
           "type": "cosmos-sdk/MsgWithdrawValidatorCommission",
           "value": {
-            "validator_address": "cosmosvaloper1grgelyng2v6v3t8z87wu3sxgt9m5s03xfytvz7"
+            "validator_address": "shareledgervaloper1ml6wjyy6hw0gynuzqvvaw4urhcpegcy9xr8002"
           }
         }
       ],
-      "sequence": "1"
+      "sequence": "3"
     },
     "parsingErr": "No error",
     "validationErr": "No error",
     "expected": [
       "0 | Type : Withdraw Val. Commission",
-      "1 | Validator [1/2] : cosmosvaloper1grgelyng2v6v3t8z87wu3sxgt",
-      "1 | Validator [2/2] : 9m5s03xfytvz7",
+      "1 | Validator [1/2] : shareledgervaloper1ml6wjyy6hw0gynu",
+      "1 | Validator [2/2] : zqvvaw4urhcpegcy9xr8002",
       "2 | Memo : Zondax.ch",
-      "3 | Fee : 0.005000 ATOM"
+      "3 | Fee : 8 SHR"
     ],
     "expert": false
   },
@@ -1797,7 +1797,7 @@
             ],
             "outputs": [
               {
-                "address": "cosmos13dr26wdygna3s8fdl5tlc45m2le2ydydgjk8ek",
+                "address": "cosmos133r26wdygna3s8fdl5tlc45m2le2ydydgjk8ek",
                 "coins": [
                   {
                     "amount": "1000",
@@ -1830,7 +1830,7 @@
       "4 | Source Address [1/2] : cosmos1hr9x0sjvel6z3vt9qny8sdd5gnnlgk0p",
       "4 | Source Address [2/2] : 69d6cv",
       "5 | Source Coins : 101000 uatom",
-      "6 | Dest Address [1/2] : cosmos13dr26wdygna3s8fdl5tlc45m2le2ydyd",
+      "6 | Dest Address [1/2] : cosmos133dr26wdygna3s8fdl5tlc45m2le2ydyd",
       "6 | Dest Address [2/2] : gjk8ek",
       "7 | Dest Coins : 1000 uatom",
       "8 | Dest Address [1/2] : cosmos1hr9x0sjvel6z3vt9qny8sdd5gnnlgk0p",
@@ -1944,21 +1944,21 @@
 		"name": "huge_test",
 		"tx": {
 			"account_number": "1",
-			"chain_id": "my-chain",
-			"fee": { "amount": [{ "amount": "2000", "denom": "uatom" }], "gas": "100000", "granter": "cosmos1ulav3hsenupswqfkw2y3sup5kgtqwnvqa8eyhs", "payer": "cosmos1ulav3hsenupswqfkw2y3sup5kgtqwnvqa8eyhs" },
+			"chain_id": "ShareRing-LifeStyle",
+			"fee": { "amount": [{ "amount": "200000000000", "denom": "nshr" }], "gas": "100000", "granter": "shareledger1843m5fxa3qthtpqs8a6w58ppxswnccn2u7psac", "payer": "shareledger1843m5fxa3qthtpqs8a6w58ppxswnccn2u7psac" },
 			"memo": "\\u003e ⚛️\\u269B⚛️     ",
 			"msgs": [
 				{
 					"type": "cosmos-sdk/MsgExec",
 					"value": {
-						"grantee": "cosmos1ulav3hsenupswqfkw2y3sup5kgtqwnvqa8eyhs",
+						"grantee": "shareledger1843m5fxa3qthtpqs8a6w58ppxswnccn2u7psac",
 						"msgs": [
 							{
 								"type": "cosmos-sdk/MsgSend",
 								"value": {
-									"amount": [{ "amount": "10000000", "denom": "uatom" }],
-									"from_address": "cosmos1ulav3hsenupswqfkw2y3sup5kgtqwnvqa8eyhs",
-									"to_address": "cosmos1ejrf4cur2wy6kfurg9f2jppp2h3afe5h6pkh5t"
+									"amount": [{ "amount": "10000000000", "denom": "nshr" }],
+									"from_address": "shareledger1843m5fxa3qthtpqs8a6w58ppxswnccn2u7psac",
+									"to_address": "shareledger1s929xap5hprh8df4aztucv4z7dn205t6nufdlc"
 								}
 							}
 						]
@@ -1970,7 +1970,7 @@
 						"metadata": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Also it ends in  a single ampersand @",
 						"option": 1,
 						"proposal_id": "1",
-						"voter": "cosmos1ulav3hsenupswqfkw2y3sup5kgtqwnvqa8eyhs"
+						"voter": "shareledger1843m5fxa3qthtpqs8a6w58ppxswnccn2u7psac"
 					}
 				}
 			],
@@ -1978,27 +1978,27 @@
 			"timeout_height": "20",
 			"tip": {
 				"amount": [
-					{ "amount": "20000", "denom": "uatom" },
+					{ "amount": "20000", "denom": "nshr" },
 					{ "amount": "30000", "denom": "uosmo" }
 				],
-				"tipper": "cosmos1ejrf4cur2wy6kfurg9f2jppp2h3afe5h6pkh5t"
+				"tipper": "shareledger1s929xap5hprh8df4aztucv4z7dn205t6nufdlc"
 			}
 		},
     "parsingErr": "No error",
     "validationErr": "No error",
     "expected": [
-      "0 | Chain ID : my-chain",
+      "0 | Chain ID : ShareRing-LifeStyle",
       "1 | Account : 1",
       "2 | Sequence : 2",
       "3 | Type : cosmos-sdk/MsgExec",
-      "4 | msgs/value/grantee [1/2] : cosmos1ulav3hsenupswqfkw2y3sup5kgtqwnvq",
-      "4 | msgs/value/grantee [2/2] : a8eyhs",
+      "4 | msgs/value/grantee [1/2] : shareledger1s929xap5hprh8df4aztucv",
+      "4 | msgs/value/grantee [2/2] : 4z7dn205t6nufdlc",
       "5 | msgs/value/msgs [1/6] : [{\"type\":\"cosmos-sdk/MsgSend\",\"value\":{",
-      "5 | msgs/value/msgs [2/6] : \"amount\":[{\"amount\":\"10000000\",\"denom\":",
-      "5 | msgs/value/msgs [3/6] : \"uatom\"}],\"from_address\":\"cosmos1ulav3h",
-      "5 | msgs/value/msgs [4/6] : senupswqfkw2y3sup5kgtqwnvqa8eyhs\",\"to_a",
-      "5 | msgs/value/msgs [5/6] : ddress\":\"cosmos1ejrf4cur2wy6kfurg9f2jpp",
-      "5 | msgs/value/msgs [6/6] : p2h3afe5h6pkh5t\"}}]",
+      "5 | msgs/value/msgs [2/6] : \"amount\":[{\"amount\":\"10000000000\",\"denom\":",
+      "5 | msgs/value/msgs [3/6] : \"nshr\"}],\"from_address\":\"shareledger18",
+      "5 | msgs/value/msgs [4/6] : 43m5fxa3qthtpqs8a6w58ppxswnccn2u7psac\",\"to_a",
+      "5 | msgs/value/msgs [5/6] : ddress\":\"shareledger1s929xap5hprh8d",
+      "5 | msgs/value/msgs [6/6] : f4aztucv4z7dn205t6nufdlc\"}}]",
       "6 | Type : cosmos-sdk/v1/MsgVote",
       "7 | msgs/value/metadata [1/13] : Lorem ipsum dolor sit amet, consectetur",
       "7 | msgs/value/metadata [2/13] :  adipiscing elit, sed do eiusmod tempor",
@@ -2015,33 +2015,33 @@
       "7 | msgs/value/metadata [13/13] : gle ampersand @",
       "8 | Option : 1",
       "9 | Proposal ID : 1",
-      "10 | Description [1/2] : cosmos1ulav3hsenupswqfkw2y3sup5kgtqwnvq",
-      "10 | Description [2/2] : a8eyhs",
+      "10 | Description [1/2] : shareledger1843m5fxa3qthtpqs8a6w58",
+      "10 | Description [2/2] : ppxswnccn2u7psac",
       "11 | Memo [1/2] : \\\\u003e \\u269b\\ufe0f\\\\u269B\\u269b\\ufe0f",
       "11 | Memo [2/2] :     ",
-      "12 | Fee : 2000 uatom",
+      "12 | Fee : 8 shr",
       "13 | Gas : 100000",
-      "14 | Granter [1/2] : cosmos1ulav3hsenupswqfkw2y3sup5kgtqwnvq",
-      "14 | Granter [2/2] : a8eyhs",
-      "15 | Payer [1/2] : cosmos1ulav3hsenupswqfkw2y3sup5kgtqwnvq",
-      "15 | Payer [2/2] : a8eyhs",
-      "16 | Tip [1/2] : 20000 uatom",
+      "14 | Granter [1/2] : shareledger1s929xap5hprh8df4aztucv",
+      "14 | Granter [2/2] : 4z7dn205t6nufdlc",
+      "15 | Payer [1/2] : shareledger1843m5fxa3qthtpqs8a6w58",
+      "15 | Payer [2/2] : ppxswnccn2u7psac",
+      "16 | Tip [1/2] : 10 shr",
       "16 | Tip [2/2] : 30000 uosmo",
-      "17 | Tipper [1/2] : cosmos1ejrf4cur2wy6kfurg9f2jppp2h3afe5h",
-      "17 | Tipper [2/2] : 6pkh5t"
+      "17 | Tipper [1/2] : shareledger1s929xap5hprh8df4aztucv",
+      "17 | Tipper [2/2] : 4z7dn205t6nufdlc"
    ],
     "expert": true
 	},
   {
     "name": "MsgSetWithdrawAddress",
     "tx":{
-      "account_number": "8",
-      "chain_id": "testing",
+      "account_number": "480",
+      "chain_id": "ShareRing-LifeStyle",
       "fee": {
         "amount": [
           {
-            "amount": "5000",
-            "denom": "uatom"
+            "amount": "8",
+            "denom": "shr"
           }
         ],
         "gas": "200000"
@@ -2051,37 +2051,37 @@
         {
           "type": "cosmos-sdk/MsgSetWithdrawAddress",
           "value": {
-            "delegator_address": "cosmos1hr9x0sjvel6z3vt9qny8sdd5gnnlgk0p69d6cv",
-            "withdraw_address": "cosmos12d64j98tjjpqkx70r08aspc4nvntqp2w6wr2de"
+            "delegator_address": "shareledger1s929xap5hprh8df4aztucv4z7dn205t6nufdlc",
+            "withdraw_address": "shareledger1843m5fxa3qthtpqs8a6w58ppxswnccn2u7psac"
           }
         },
         {
           "type": "cosmos-sdk/MsgWithdrawDelegationReward",
           "value": {
-            "delegator_address": "cosmos1hr9x0sjvel6z3vt9qny8sdd5gnnlgk0p69d6cv",
-            "validator_address": "cosmosvaloper13dr26wdygna3s8fdl5tlc45m2le2ydyddxzj49"
+            "delegator_address": "shareledger1s929xap5hprh8df4aztucv4z7dn205t6nufdlc",
+            "validator_address": "shareledgervaloper1w4l5fchs69d9avlgvdehq9ypvdh4xyeveusq8r"
           }
         }
       ],
-      "sequence": "7"
+      "sequence": "5"
     },
     "parsingErr": "No error",
     "validationErr": "No error",
     "expected": [
-      "0 | Chain ID : testing",
-      "1 | Account : 8",
-      "2 | Sequence : 7",
+      "0 | Chain ID : ShareRing-LifeStyle",
+      "1 | Account : 480",
+      "2 | Sequence : 5",
       "3 | Type : Withdraw Set Address",
-      "4 | Delegator [1/2] : cosmos1hr9x0sjvel6z3vt9qny8sdd5gnnlgk0p",
-      "4 | Delegator [2/2] : 69d6cv",
-      "5 | Withdraw Address [1/2] : cosmos12d64j98tjjpqkx70r08aspc4nvntqp2w",
-      "5 | Withdraw Address [2/2] : 6wr2de",
+      "4 | Delegator [1/2] : shareledger1s929xap5hprh8df4aztucv",
+      "4 | Delegator [2/2] : 4z7dn205t6nufdlc",
+      "5 | Withdraw Address [1/2] : shareledger1843m5fxa3qthtpqs8a6w58",
+      "5 | Withdraw Address [2/2] : ppxswnccn2u7psac",
       "6 | Type : Withdraw Reward",
-      "7 | Delegator [1/2] : cosmos1hr9x0sjvel6z3vt9qny8sdd5gnnlgk0p",
-      "7 | Delegator [2/2] : 69d6cv",
-      "8 | Validator [1/2] : cosmosvaloper13dr26wdygna3s8fdl5tlc45m2",
-      "8 | Validator [2/2] : le2ydyddxzj49",
-      "9 | Fee : 5000 uatom",
+      "7 | Delegator [1/2] : shareledger1s929xap5hprh8df4aztucv",
+      "7 | Delegator [2/2] : 4z7dn205t6nufdlc",
+      "8 | Validator [1/2] : shareledgervaloper1w4l5fchs69d9avl",
+      "8 | Validator [2/2] : gvdehq9ypvdh4xyeveusq8r",
+      "9 | Fee : 8 shr",
       "10 | Gas : 200000"
     ],
     "expert": true

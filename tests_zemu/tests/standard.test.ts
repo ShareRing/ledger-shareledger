@@ -75,8 +75,7 @@ describe('Standard', function () {
 
       // Derivation path. First 3 items are automatically hardened!
       const path = [44, 118, 5, 0, 3]
-      const resp = await app.getAddressAndPubKey(path, 'cosmos')
-
+      const resp = await app.getAddressAndPubKey(path, 'shareledger')
       console.log(resp)
 
       expect(resp.return_code).toEqual(0x9000)
@@ -85,7 +84,7 @@ describe('Standard', function () {
       expect(resp).toHaveProperty('bech32_address')
       expect(resp).toHaveProperty('compressed_pk')
 
-      expect(resp.bech32_address).toEqual('cosmos1wkd9tfm5pqvhhaxq77wv9tvjcsazuaykwsld65')
+      expect(resp.bech32_address).toEqual('shareledger1wkd9tfm5pqvhhaxq77wv9tvjcsazuaykk5a5ml')
       expect(resp.compressed_pk.length).toEqual(33)
     } finally {
       await sim.close()
@@ -100,7 +99,7 @@ describe('Standard', function () {
 
       // Derivation path. First 3 items are automatically hardened!
       const path = [44, 118, 5, 0, 3]
-      const respRequest = app.showAddressAndPubKey(path, 'cosmos')
+      const respRequest = app.showAddressAndPubKey(path, 'shareledger')
       // Wait until we are not in the main menu
       await sim.waitUntilScreenIsNot(sim.getMainMenuSnapshot())
       await sim.compareSnapshotsAndApprove('.', `${m.prefix.toLowerCase()}-show_address`)
@@ -114,7 +113,7 @@ describe('Standard', function () {
       expect(resp).toHaveProperty('bech32_address')
       expect(resp).toHaveProperty('compressed_pk')
 
-      expect(resp.bech32_address).toEqual('cosmos1wkd9tfm5pqvhhaxq77wv9tvjcsazuaykwsld65')
+      expect(resp.bech32_address).toEqual('shareledger1wkd9tfm5pqvhhaxq77wv9tvjcsazuaykk5a5ml')
       expect(resp.compressed_pk.length).toEqual(33)
     } finally {
       await sim.close()
@@ -129,7 +128,7 @@ describe('Standard', function () {
 
       // Derivation path. First 3 items are automatically hardened!
       const path = [44, 118, 2147483647, 0, 4294967295]
-      const resp = await app.showAddressAndPubKey(path, 'cosmos')
+      const resp = await app.showAddressAndPubKey(path, 'shareledger')
       console.log(resp)
 
       expect(resp.return_code).toEqual(0x6985)
@@ -152,7 +151,7 @@ describe('Standard', function () {
 
       // Derivation path. First 3 items are automatically hardened!
       const path = [44, 118, 2147483647, 0, 4294967295]
-      const respRequest = app.showAddressAndPubKey(path, 'cosmos')
+      const respRequest = app.showAddressAndPubKey(path, 'shareledger')
 
       // Wait until we are not in the main menu
       await sim.waitUntilScreenIsNot(sim.getMainMenuSnapshot())
@@ -167,7 +166,7 @@ describe('Standard', function () {
       expect(resp).toHaveProperty('bech32_address')
       expect(resp).toHaveProperty('compressed_pk')
 
-      expect(resp.bech32_address).toEqual('cosmos1ex7gkwwmq4vcgdwcalaq3t20pgwr37u6ntkqzh')
+      expect(resp.bech32_address).toEqual('shareledger1ex7gkwwmq4vcgdwcalaq3t20pgwr37u6t05eru')
       expect(resp.compressed_pk.length).toEqual(33)
     } finally {
       await sim.close()

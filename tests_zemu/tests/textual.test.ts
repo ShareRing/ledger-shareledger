@@ -47,7 +47,7 @@
        const tx = Buffer.from(tx_sign_textual, 'hex')
  
        // get address / publickey
-       const respPk = await app.getAddressAndPubKey(path, 'cosmos')
+       const respPk = await app.getAddressAndPubKey(path, 'shareledger')
        expect(respPk.return_code).toEqual(0x9000)
        expect(respPk.error_message).toEqual('No errors')
        console.log(respPk)
@@ -98,7 +98,7 @@
       const tx = Buffer.from(tx_sign_textual, 'hex')
 
       // get address / publickey
-      const respPk = await app.getAddressAndPubKey(path, 'cosmos')
+      const respPk = await app.getAddressAndPubKey(path, 'shareledger')
       expect(respPk.return_code).toEqual(0x9000)
       expect(respPk.error_message).toEqual('No errors')
       console.log(respPk)

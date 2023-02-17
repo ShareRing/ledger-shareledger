@@ -47,7 +47,7 @@ describe('Json', function () {
       const tx = Buffer.from(JSON.stringify(example_tx_str_basic))
 
       // get address / publickey
-      const respPk = await app.getAddressAndPubKey(path, 'cosmos')
+      const respPk = await app.getAddressAndPubKey(path, 'shareledger')
       expect(respPk.return_code).toEqual(0x9000)
       expect(respPk.error_message).toEqual('No errors')
       console.log(respPk)
@@ -92,7 +92,7 @@ describe('Json', function () {
       const tx = Buffer.from(JSON.stringify(example_tx_str_basic2))
 
       // get address / publickey
-      const respPk = await app.getAddressAndPubKey(path, 'cosmos')
+      const respPk = await app.getAddressAndPubKey(path, 'shareledger')
       expect(respPk.return_code).toEqual(0x9000)
       expect(respPk.error_message).toEqual('No errors')
       console.log(respPk)
@@ -136,7 +136,7 @@ describe('Json', function () {
       const tx = Buffer.from(JSON.stringify(example_tx_str_basic))
 
       // get address / publickey
-      const respPk = await app.getAddressAndPubKey(path, 'cosmos')
+      const respPk = await app.getAddressAndPubKey(path, 'shareledger')
       expect(respPk.return_code).toEqual(0x9000)
       expect(respPk.error_message).toEqual('No errors')
       console.log(respPk)
@@ -181,7 +181,7 @@ describe('Json', function () {
       const tx = Buffer.from(JSON.stringify(ibc_denoms))
 
       // get address / publickey
-      const respPk = await app.getAddressAndPubKey(path, 'cosmos')
+      const respPk = await app.getAddressAndPubKey(path, 'shareledger')
       expect(respPk.return_code).toEqual(0x9000)
       expect(respPk.error_message).toEqual('No errors')
       console.log(respPk)
@@ -226,7 +226,7 @@ describe('Json', function () {
       const tx = Buffer.from(JSON.stringify(setWithdrawAddress))
 
       // get address / publickey
-      const respPk = await app.getAddressAndPubKey(path, 'cosmos')
+      const respPk = await app.getAddressAndPubKey(path, 'shareledger')
       expect(respPk.return_code).toEqual(0x9000)
       expect(respPk.error_message).toEqual('No errors')
       console.log(respPk)
@@ -271,7 +271,7 @@ describe('Json', function () {
       const tx = Buffer.from(JSON.stringify(cliGovDeposit))
 
       // get address / publickey
-      const respPk = await app.getAddressAndPubKey(path, 'cosmos')
+      const respPk = await app.getAddressAndPubKey(path, 'shareledger')
       expect(respPk.return_code).toEqual(0x9000)
       expect(respPk.error_message).toEqual('No errors')
       console.log(respPk)
