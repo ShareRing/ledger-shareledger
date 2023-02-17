@@ -578,6 +578,8 @@ static const key_subst_t key_substitutions[] = {
         {"msgs/txEvents/logIndex", "Index"},
         {"msgs/txEvents/sender", "TxSender"},
         {"msgs/txEvents/txHash", "TxHash"},
+        {"msgs/value/creator", "Creator"},
+        {"msgs/value/memo", "Memo"},
 
         /********************************
          *      Cosmwasm module         *

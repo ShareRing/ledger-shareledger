@@ -1,6 +1,6 @@
 Transaction Specification
 -------------------------
-Two types of transaction formats are supported by the Cosmos App, Json format and Textual format.
+Two types of transaction formats are supported by the Shareledger App, Json format and Textual format.
 
 ### JSON Format
 
@@ -27,9 +27,9 @@ Transactions passed to the Ledger device will be in the following format. The Le
 ```json
 {
   "account_number": "123",
-  "chain_id": "cosmoshub-4",
+  "chain_id": "ShareRing-LifeStyle",
   "fee": {
-    "amount": [{"amount": "4000", "denom": "uatom"}, ...],
+    "amount": [{"amount": "8", "denom": "shr"}, ...],
     "gas": "40000"
   },
   "memo": "this is a comment",
@@ -119,19 +119,19 @@ expert_key = 3
 #### Examples
 Textual Representation
 ```
-Chain id: my-chain
-Account number: 1
-Sequence: 2 
+Chain id: ShareRing-LifeStyle
+Account number: 480
+Sequence: 5
 Public key: cosmos.crypto.secp256k1.PubKey
 > PubKey object
 >> Key: Auvdf+T963bciiBe9l15DNMOijdaXCUo6zqSOvH7TXlN
 Transaction: 1 Messages
 > Message (1/1): cosmos.bank.v1beta1.MsgSend
-> From address: cosmos1ulav3hsenupswqfkw2y3sup5kgtqwnvqa8eyhs
-> To address: cosmos1ejrf4cur2wy6kfurg9f2jppp2h3afe5h6pkh5t
-> Amount: 10 ATOM
+> From address: shareledger1843m5fxa3qthtpqs8a6w58ppxswnccn2u7psac
+> To address: shareledger1s929xap5hprh8df4aztucv4z7dn205t6nufdlc
+> Amount: 100 shr
 End of Messages
-Fees: 0.002 uatom
+Fees: 8 shr
 Gas limit: 100'000
 Hash of raw bytes: e237dc2e3f8f0b1d0310e1cd0b0ab5fc4a59e4bc3454d67eb65c3fdb0fa599c9
 ````
@@ -139,19 +139,19 @@ Hash of raw bytes: e237dc2e3f8f0b1d0310e1cd0b0ab5fc4a59e4bc3454d67eb65c3fdb0fa59
 CBOR Envelope
 ```
 [
-    {1: "Chain id: my-chain"},
-    {1: "Account number: 1"},
-    {1: "Sequence: 2"},
+    {1: "Chain id: ShareRing-LifeStyle"},
+    {1: "Account number: 480"},
+    {1: "Sequence: 5"},
     {1: "Public key: cosmos.crypto.secp256k1.PubKey", 3: true},
     {1: "PubKey object", 2: 1, 3: true},
     {1: "Key: Auvdf+T963bciiBe9l15DNMOijdaXCUo6zqSOvH7TXlN", 2: 2, 3: true},
     {1: "Transaction: 1 Messages"},
     {1: "Message (1/1): cosmos.bank.v1beta1.MsgSend", 2: 1},
-    {1: "From address: cosmos1ulav3hsenupswqfkw2y3sup5kgtqwnvqa8eyhs", 2: 1},
-    {1: "To address: cosmos1ejrf4cur2wy6kfurg9f2jppp2h3afe5h6pkh5t", 2: 1},
-    {1: "Amount: 10 ATOM", 2: 1},
+    {1: "From address: shareledger1843m5fxa3qthtpqs8a6w58ppxswnccn2u7psac", 2: 1},
+    {1: "To address: shareledger1s929xap5hprh8df4aztucv4z7dn205t6nufdlc", 2: 1},
+    {1: "Amount: 100 shr", 2: 1},
     {1: "End of Messages"},
-    {1: "Fees: 0.002 uatom"},
+    {1: "Fees: 8 shr"},
     {1: "Gas limit: 100'000", 3: true},
     { 1: "Hash of raw bytes: e237dc2e3f8f0b1d0310e1cd0b0ab5fc4a59e4bc3454d67eb65c3fdb0fa599c9", 3: true,},
 ]
