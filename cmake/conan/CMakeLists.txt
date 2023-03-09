@@ -9,6 +9,8 @@ include(${CMAKE_BINARY_DIR}/conan.cmake)
 
 conan_check(REQUIRED)
 
+conan profile new --detect default
+
 conan_cmake_run(CONANFILE conanfile.txt
                 PROFILE default
                 PROFILE_AUTO ALL
