@@ -145,12 +145,12 @@ INSTANTIATE_TEST_SUITE_P ( // NOLINT(cert-err58-cpp)
     JsonTests_Secp256::PrintToStringParamName()
 );
 
-// INSTANTIATE_TEST_SUITE_P ( // NOLINT(cert-err58-cpp)
-//     JsonTestTextualCases,
-//     JsonTests_Textual,
-//     ::testing::ValuesIn(GetJsonTextualTestCases("testcases/textual.json")),
-//     JsonTests_Textual::PrintToStringParamName()
-// );
+ INSTANTIATE_TEST_SUITE_P ( // NOLINT(cert-err58-cpp)
+     JsonTestTextualCases,
+     JsonTests_Textual,
+     ::testing::ValuesIn(GetJsonTextualTestCases("testcases/textual.json")),
+     JsonTests_Textual::PrintToStringParamName()
+ );
 
 TEST_P(JsonTests_Secp256, ValidateTestcase) { validate_testcase(GetParam()); }
 TEST_P(JsonTests_Secp256, CheckUIOutput) { check_testcase(GetParam()); }
