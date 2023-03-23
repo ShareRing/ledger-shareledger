@@ -672,18 +672,14 @@
     "parsingErr": "No error",
     "validationErr": "No error",
     "expected": [
-      "0 | Chain ID : otherhub",
-      "1 | Account : 6571",
-      "2 | Sequence : 1",
-      "3 | Type : Delegate",
-      "4 | Amount : 1000000 uatom",
-      "5 | Delegator [1/2] : shareledger1843m5fxa3qthtpqs8a6w58",
-      "5 | Delegator [2/2] : ppxswnccn2u7psac",
-      "6 | Validator [1/2] : shareledgervaloper1grgelyng2v6v3t8",
-      "6 | Validator [2/2] : z87wu3sxgt9m5s03xfytvz7",
-      "7 | Memo : Zondax.ch",
-      "8 | Fee : 8 shr",
-      "9 | Gas : 200000"
+      "0 | Type : Delegate",
+      "1 | Amount : 100 shr",
+      "2 | Delegator [1/2] : shareledger1843m5fxa3qthtpqs8a6w58ppxsw",
+      "2 | Delegator [2/2] : nccn2u7psac",
+      "3 | Validator [1/2] : shareledgervaloper1grgelyng2v6v3t8z87wu",
+      "3 | Validator [2/2] : 3sxgt9m5s03xfytvz7",
+      "4 | Memo : Zondax.ch",
+      "5 | Fee : 8 shr"
     ],
     "expert": false
   },
@@ -722,10 +718,10 @@
     "expected": [
       "0 | Type : Delegate",
       "1 | Amount : 1.000000 SHR",
-      "2 | Delegator [1/2] : shareledger1s929xap5hprh8df4aztucv",
-      "2 | Delegator [2/2] : 4z7dn205t6nufdlc",
-      "3 | Validator [1/2] : shareledgervaloper1w4l5fchs69d9avl",
-      "3 | Validator [2/2] : gvdehq9ypvdh4xyeveusq8r",
+      "2 | Delegator [1/2] : shareledger1s929xap5hprh8df4aztucv4z7dn",
+      "2 | Delegator [2/2] : 205t6nufdlc",
+      "3 | Validator [1/2] : shareledgervaloper1w4l5fchs69d9avlgvdeh",
+      "3 | Validator [2/2] : q9ypvdh4xyeveusq8r",
       "4 | Memo : Zondax.ch",
       "5 | Fee : 8 SHR"
     ],
@@ -854,11 +850,11 @@
       "1 | Account : 480",
       "2 | Sequence : 3",
       "3 | Type : Delegate",
-      "4 | Amount : 1000000 uatom",
-      "5 | Delegator [1/2] : shareledger1843m5fxa3qthtpqs8a6w58",
-      "5 | Delegator [2/2] : ppxswnccn2u7psac",
-      "6 | Validator [1/2] : shareledgervaloper1ml6wjyy6hw0gynu",
-      "6 | Validator [2/2] : zqvvaw4urhcpegcy9xr8002",
+      "4 | Amount : 10 shr",
+      "5 | Delegator [1/2] : shareledger1843m5fxa3qthtpqs8a6w58ppxsw",
+      "5 | Delegator [2/2] : nccn2u7psac",
+      "6 | Validator [1/2] : shareledgervaloper1ml6wjyy6hw0gynuzqvva",
+      "6 | Validator [2/2] : w4urhcpegcy9xr8002",
       "7 | Memo : Delegated with Ledger from union.market",
       "8 | Fee : 8 shr",
       "9 | Gas : 200000"
@@ -900,12 +896,12 @@
     "expected": [
       "0 | Type : Delegate",
       "1 | Amount : 1.000000 SHR",
-      "2 | Delegator [1/2] : cosmos102hty0jv2s29lyc4u0tv97z9v298e24t",
-      "2 | Delegator [2/2] : 3vwtpl",
-      "3 | Validator [1/2] : cosmosvaloper1grgelyng2v6v3t8z87wu3sxgt",
-      "3 | Validator [2/2] : 9m5s03xfytvz7",
+      "2 | Delegator [1/2] : shareledger1843m5fxa3qthtpqs8a6w58ppxsw",
+      "2 | Delegator [2/2] : nccn2u7psac",
+      "3 | Validator [1/2] : shareledgervaloper1ml6wjyy6hw0gynuzqvva",
+      "3 | Validator [2/2] : w4urhcpegcy9xr8002",
       "4 | Memo : Delegated with Ledger from union.market",
-      "5 | Fee : 8 SHR"
+      "5 | Fee : 8 shr"
     ],
     "expert": false
   },
@@ -1098,13 +1094,13 @@
     "validationErr": "No error",
     "expected": [
       "0 | Type : Withdraw Reward",
-      "1 | Delegator [1/2] : cosmos14lultfckehtszvzw4ehu0apvsr77afvy",
-      "1 | Delegator [2/2] : hgqhwh",
-      "2 | Validator [1/2] : cosmosvaloper1qwl879nx9t6kef4supyazayf7",
-      "2 | Validator [2/2] : vjhennyh568ys",
-      "3 | Validator [1/2] : cosmosvaloper1x88j7vp2xnw3zec8ur3g4waxy",
-      "3 | Validator [2/2] : cyz7m0mahdv3p",
-      "4 | Fee : 8 SHR"
+      "1 | Delegator [1/2] : shareledger1843m5fxa3qthtpqs8a6w58ppxsw",
+      "1 | Delegator [2/2] : nccn2u7psac",
+      "2 | Validator [1/2] : shareledgervaloper1ml6wjyy6hw0gynuzqvva",
+      "2 | Validator [2/2] : w4urhcpegcy9xr8002",
+      "3 | Validator [1/2] : shareledgervaloper1w4l5fchs69d9avlgvdeh",
+      "3 | Validator [2/2] : q9ypvdh4xyeveusq8r",
+      "4 | Fee : 8.000000 SHR"
     ],
     "expert": false
   },
@@ -1505,16 +1501,22 @@
     "parsingErr": "No error",
     "validationErr": "No error",
     "expected": [
-      "0 | Type : Withdraw Reward",
-      "1 | Delegator [1/2] : cosmos19umvgcvk8cxsvzemy239nj9ngc2ltuka",
-      "1 | Delegator [2/2] : ntgyp3",
-      "2 | Validator [1/2] : cosmosvaloper1648ynlpdw7fqa2axt0w2yp3fk",
-      "2 | Validator [2/2] : 542junl7rsvq6",
-      "3 | Type : Delegate",
-      "4 | Amount : 20.139397 SHR",
+      "0 | Chain ID : cosmoshub-4",
+      "1 | Account : 480",
+      "2 | Sequence : 106",
+      "3 | Type : Withdraw Reward",
+      "4 | Delegator [1/2] : cosmos19umvgcvk8cxsvzemy239nj9ngc2ltuka",
+      "4 | Delegator [2/2] : ntgyp3",
       "5 | Validator [1/2] : cosmosvaloper1648ynlpdw7fqa2axt0w2yp3fk",
       "5 | Validator [2/2] : 542junl7rsvq6",
-      "6 | Fee : 8 SHR"
+      "6 | Type : Delegate",
+      "7 | Amount : 20139397 uatom",
+      "8 | Delegator [1/2] : cosmos19umvgcvk8cxsvzemy239nj9ngc2ltuka",
+      "8 | Delegator [2/2] : ntgyp3",
+      "9 | Validator [1/2] : cosmosvaloper1648ynlpdw7fqa2axt0w2yp3fk",
+      "9 | Validator [2/2] : 542junl7rsvq6",
+      "10 | Fee : 600 uatom",
+      "11 | Gas : 200000"
     ],
     "expert": false
   },
@@ -2078,15 +2080,15 @@
       "1 | Account : 480",
       "2 | Sequence : 5",
       "3 | Type : Withdraw Set Address",
-      "4 | Delegator [1/2] : shareledger1s929xap5hprh8df4aztucv",
-      "4 | Delegator [2/2] : 4z7dn205t6nufdlc",
-      "5 | Withdraw Address [1/2] : shareledger1843m5fxa3qthtpqs8a6w58",
-      "5 | Withdraw Address [2/2] : ppxswnccn2u7psac",
+      "4 | Delegator [1/2] : shareledger1s929xap5hprh8df4aztucv4z7dn",
+      "4 | Delegator [2/2] : 205t6nufdlc",
+      "5 | Withdraw Address [1/2] : shareledger1843m5fxa3qthtpqs8a6w58ppxsw",
+      "5 | Withdraw Address [2/2] : nccn2u7psac",
       "6 | Type : Withdraw Reward",
-      "7 | Delegator [1/2] : shareledger1s929xap5hprh8df4aztucv",
-      "7 | Delegator [2/2] : 4z7dn205t6nufdlc",
-      "8 | Validator [1/2] : shareledgervaloper1w4l5fchs69d9avl",
-      "8 | Validator [2/2] : gvdehq9ypvdh4xyeveusq8r",
+      "7 | Delegator [1/2] : shareledger1s929xap5hprh8df4aztucv4z7dn",
+      "7 | Delegator [2/2] : 205t6nufdlc",
+      "8 | Validator [1/2] : shareledgervaloper1w4l5fchs69d9avlgvdeh",
+      "8 | Validator [2/2] : q9ypvdh4xyeveusq8r",
       "9 | Fee : 8 shr",
       "10 | Gas : 200000"
     ],
@@ -2273,3 +2275,4 @@
 
 
 ]
+
