@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
   pull_request:
-    branches: [ main, develop ]
+    branches: [ main, features/ledger-shareledger ]
 
 jobs:
   configure:
