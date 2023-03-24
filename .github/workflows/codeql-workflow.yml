@@ -67,17 +67,9 @@ jobs:
     #     ./location_of_script_within_repo/buildscript.sh
 
     # CodeQL will create the database during the compilation
-    - name: Build NanoX
+    - name: Build
       run: |
-          make BOLOS_SDK=${{ github.workspace }}/deps/nanox-secure-sdk
-
-    - name: Build NanoS
-      run: |
-          make BOLOS_SDK=${{ github.workspace }}/deps/nanos-secure-sdk
-
-    - name: Build NanoS-Plus
-      run: |
-          make BOLOS_SDK=${{ github.workspace }}/deps/nanosplus-secure-sdk
+          make BOLOS_SDK=${{ matrix.sdk }}
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
