@@ -1,5 +1,5 @@
 /*******************************************************************************
-*   (c) 2018, 2019 Zondax GmbH
+*   (c) 2018 - 2023 Zondax AG
 *   (c) 2016 Ledger
 *
 *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -35,11 +35,6 @@
 #include "parser_impl.h"
 #include "view_internal.h"
 
-#include "chain_config.h"
-
-static const char *msg_error1 = "Expert Mode";
-static const char *msg_error2 = "Required";
-
 __Z_INLINE void handle_getversion(__Z_UNUSED volatile uint32_t *flags, volatile uint32_t *tx, __Z_UNUSED uint32_t rx) {
 #ifdef DEBUG
     G_io_apdu_buffer[0] = 0xFF;
@@ -69,15 +64,9 @@ static void extractHDPath(uint32_t rx, uint32_t offset) {
 
     // Check values
     if (hdPath[0] != HDPATH_0_DEFAULT ||
-        ((hdPath[1] != HDPATH_1_DEFAULT) && (hdPath[1] != HDPATH_ETH_1_DEFAULT)) ||
+        hdPath[1] != HDPATH_1_DEFAULT ||
         hdPath[3] != HDPATH_3_DEFAULT) {
         THROW(APDU_CODE_DATA_INVALID);
-    }
-
-    encoding = checkChainConfig(hdPath[1], bech32_hrp, bech32_hrp_len);
-    if (encoding == UNSUPPORTED) {
-        ZEMU_LOGF(50, "Chain config not supported for: %s\n", bech32_hrp)
-        THROW(APDU_CODE_COMMAND_NOT_ALLOWED);
     }
 
     // Limit values unless the app is running in expert mode
@@ -94,24 +83,28 @@ static bool process_chunk(volatile uint32_t *tx, uint32_t rx) {
 
     const uint8_t payloadType = G_io_apdu_buffer[OFFSET_PAYLOAD_TYPE];
 
+    if (G_io_apdu_buffer[OFFSET_P2] != 0) {
+        THROW(APDU_CODE_INVALIDP1P2);
+    }
+
     if (rx < OFFSET_DATA) {
         THROW(APDU_CODE_WRONG_LENGTH);
     }
 
     uint32_t added;
     switch (payloadType) {
-        case P1_INIT:
+        case 0:
             tx_initialize();
             tx_reset();
             extractHDPath(rx, OFFSET_DATA);
             return false;
-        case P1_ADD:
+        case 1:
             added = tx_append(&(G_io_apdu_buffer[OFFSET_DATA]), rx - OFFSET_DATA);
             if (added != rx - OFFSET_DATA) {
                 THROW(APDU_CODE_OUTPUT_BUFFER_TOO_SMALL);
             }
             return false;
-        case P1_LAST:
+        case 2:
             added = tx_append(&(G_io_apdu_buffer[OFFSET_DATA]), rx - OFFSET_DATA);
             if (added != rx - OFFSET_DATA) {
                 THROW(APDU_CODE_OUTPUT_BUFFER_TOO_SMALL);
@@ -209,7 +202,7 @@ void handleApdu(volatile uint32_t *flags, volatile uint32_t *tx, uint32_t rx) {
 
                 case INS_SIGN_SECP256K1: {
                     CHECK_PIN_VALIDATED()
-                    handleSign(flags, tx, rx);
+                    handleSignSecp256K1(flags, tx, rx);
                     break;
                 }
 
