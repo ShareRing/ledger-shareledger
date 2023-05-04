@@ -39,21 +39,19 @@ $(info COIN  = [$(COIN)])
 
 ifeq ($(COIN),SHR)
 # Main app configuration
-APPNAME = "Shareledger"
-APPPATH = "44'/118'"
-APPPATH2 = "44'/60'"
+APPNAME = "Cosmos"
+APPPATH = "44'/118'" --path "44'/60'"
 else
 define error_message
 
 
 COIN value not supported: [$(COIN)]
 
-
 endef
 $(error "$(error_message)")
 endif
 
-APP_LOAD_PARAMS = --curve secp256k1 $(COMMON_LOAD_PARAMS) --path $(APPPATH)  --path $(APPPATH2)
+APP_LOAD_PARAMS = --curve secp256k1 $(COMMON_LOAD_PARAMS) --path $(APPPATH)
 
 NANOS_STACK_SIZE:=1815
 include $(CURDIR)/../deps/ledger-zxlib/makefiles/Makefile.devices
@@ -66,7 +64,7 @@ $(error ICONNAME is not set)
 endif
 
 include $(CURDIR)/../deps/ledger-zxlib/makefiles/Makefile.platform
-
+DEFINES += HAVE_HASH HAVE_BLAKE2 HAVE_SHA256 HAVE_SHA512
 CFLAGS += -I$(MY_DIR)/../deps/tinycbor/src
 APP_SOURCE_PATH += $(MY_DIR)/../deps/tinycbor-ledger
 APP_SOURCE_PATH += $(MY_DIR)/../deps/jsmn/src
