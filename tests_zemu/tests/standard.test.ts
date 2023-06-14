@@ -14,7 +14,7 @@
  *  limitations under the License.
  ******************************************************************************* */
 
-import Zemu, { zondaxMainmenuNavigation, ButtonKind } from '@zondax/zemu'
+import Zemu, { zondaxMainmenuNavigation, ButtonKind, ClickNavigation, TouchNavigation } from '@zondax/zemu'
 import { CosmosApp } from '@zondax/ledger-cosmos-js'
 import { defaultOptions, DEVICE_MODELS, example_tx_str_basic, example_tx_str_basic2, ibc_denoms } from './common'
 
@@ -22,8 +22,10 @@ import { defaultOptions, DEVICE_MODELS, example_tx_str_basic, example_tx_str_bas
 import secp256k1 from 'secp256k1/elliptic'
 // @ts-ignore
 import crypto from 'crypto'
+import { ActionKind, IButton, INavElement } from '@zondax/zemu/dist/types'
 
 jest.setTimeout(90000)
+
 describe('Standard', function () {
   test.concurrent.each(DEVICE_MODELS)('can start and stop container', async function (m) {
     const sim = new Zemu(m.path)
@@ -123,6 +125,59 @@ describe('Standard', function () {
     }
   })
 
+    test.concurrent.each(DEVICE_MODELS)('show Eth address', async function (m) {
+    const sim = new Zemu(m.path)
+    try {
+      await sim.start({
+        ...defaultOptions,
+        model: m.name,
+        approveKeyword: m.name === 'stax' ? 'Path' : '',
+        approveAction: ButtonKind.ApproveTapButton,
+      })
+      const app = new CosmosApp(sim.getTransport())
+
+      // Derivation path. First 3 items are automatically hardened!
+      const path = [44, 60, 0, 0, 1]
+      const hrp = 'inj'
+
+      // check with invalid HRP
+      const errorRespPk = await app.getAddressAndPubKey(path, 'cosmos')
+      expect(errorRespPk.return_code).toEqual(0x6986)
+      expect(errorRespPk.error_message).toEqual('Transaction rejected')
+
+      const respRequest = app.showAddressAndPubKey(path, hrp)
+      // Wait until we are not in the main menu
+      await sim.waitUntilScreenIsNot(sim.getMainMenuSnapshot())
+      await sim.compareSnapshotsAndApprove('.', `${m.prefix.toLowerCase()}-show_eth_address`)
+
+      const resp = await respRequest
+      console.log(resp)
+
+      expect(resp.return_code).toEqual(0x9000)
+      expect(resp.error_message).toEqual('No errors')
+
+      expect(resp).toHaveProperty('bech32_address')
+      expect(resp).toHaveProperty('compressed_pk')
+
+      expect(resp.compressed_pk.length).toEqual(33)
+
+      // Verify address
+      const secp256k1 = require("secp256k1");
+      const keccak = require("keccak256");
+      const { bech32 } = require("bech32");
+
+      // Take the compressed pubkey and verify that the expected address can be computed
+      const uncompressPubKeyUint8Array = secp256k1.publicKeyConvert(resp.compressed_pk, false).subarray(1);
+      const ethereumAddressBuffer = Buffer.from(keccak(Buffer.from(uncompressPubKeyUint8Array))).subarray(-20);
+      const eth_address = bech32.encode(hrp, bech32.toWords(ethereumAddressBuffer)); // "cosmos15n2h0lzvfgc8x4fm6fdya89n78x6ee2fm7fxr3"
+
+      expect(resp.bech32_address).toEqual(eth_address)
+      expect(resp.bech32_address).toEqual('inj15n2h0lzvfgc8x4fm6fdya89n78x6ee2f3h7z3f')
+    } finally {
+      await sim.close()
+    }
+  })
+
   test.concurrent.each(DEVICE_MODELS)('show address HUGE', async function (m) {
     const sim = new Zemu(m.path)
     try {
@@ -158,7 +213,7 @@ describe('Standard', function () {
       const app = new CosmosApp(sim.getTransport())
 
       // Activate expert mode
-      await sim.toggleExpertMode()
+      await sim.toggleExpertMode();
 
       // Derivation path. First 3 items are automatically hardened!
       const path = [44, 118, 2147483647, 0, 4294967295]
@@ -364,10 +419,10 @@ describe('Standard', function () {
     }
   })
 
-    test.concurrent.each(DEVICE_MODELS)('sign basic normal Eth', async function (m) {
+test.concurrent.each(DEVICE_MODELS)('sign basic normal Eth', async function (m) {
     const sim = new Zemu(m.path)
     try {
-      await sim.start({ ...DEFAULT_OPTIONS, model: m.name })
+      await sim.start({ ...defaultOptions, model: m.name })
       const app = new CosmosApp(sim.getTransport())
 
       // Enable expert to allow sign with eth path
@@ -399,6 +454,7 @@ describe('Standard', function () {
 
       expect(resp.return_code).toEqual(0x9000)
       expect(resp.error_message).toEqual('No errors')
+      expect(resp).toHaveProperty('signature')
 
       // Now verify the signature
       const sha3 = require('js-sha3')
@@ -419,7 +475,7 @@ describe('Standard', function () {
   test.concurrent.each(DEVICE_MODELS)('sign basic normal Eth no expert', async function (m) {
     const sim = new Zemu(m.path)
     try {
-      await sim.start({ ...DEFAULT_OPTIONS, model: m.name })
+      await sim.start({ ...defaultOptions, model: m.name })
       const app = new CosmosApp(sim.getTransport())
 
       const path = [44, 60, 0, 0, 0]
@@ -436,7 +492,21 @@ describe('Standard', function () {
 
       // Wait until we are not in the main menu
       await sim.waitUntilScreenIsNot(sim.getMainMenuSnapshot())
-      await sim.navigateAndCompareSnapshots('.', `${m.prefix.toLowerCase()}-sign_basic_eth_warning`, [1,0], false)
+      let nav = undefined;
+      if (m.name === 'stax') {
+        const okButton: IButton = {
+          x: 200,
+          y: 540,
+          delay: 0.25,
+        };
+        nav = new TouchNavigation([
+          ButtonKind.ConfirmYesButton,
+        ]);
+        nav.schedule[0].button = okButton;
+      } else {
+        nav = new ClickNavigation([1, 0]);
+      }
+      await sim.navigate('.', `${m.prefix.toLowerCase()}-sign_basic_eth_warning`, nav.schedule);
 
       const resp = await signatureRequest
       console.log(resp)

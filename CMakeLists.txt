@@ -121,8 +121,7 @@ target_include_directories(app_lib PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/app/src
         ${CMAKE_CURRENT_SOURCE_DIR}/app/src/common
         ${CMAKE_CURRENT_SOURCE_DIR}/deps/ledger-zxlib/app/common
-        ${CMAKE_CURRENT_SOURCE_DIR}/deps/tinycbor/src
-        ${CMAKE_CURRENT_SOURCE_DIR}/deps/tinykeccak/
+        ${CMAKE_CURRENT_SOURCE_DIR}/deps/tinykeccak
         )
 
 target_link_libraries(app_lib PUBLIC)
