@@ -29,7 +29,6 @@ uint8_t bech32_hrp_len;
 char bech32_hrp[MAX_BECH32_HRP_LEN + 1];
 address_encoding_e encoding;
 
-#if defined(TARGET_NANOS) || defined(TARGET_NANOX) || defined(TARGET_NANOS2) || defined(TARGET_STAX)
 #include "cx.h"
 
 zxerr_t crypto_extractUncompressedPublicKey(const uint32_t path[HDPATH_LEN_DEFAULT], uint8_t *pubKey, uint16_t pubKeyLen) {
@@ -88,14 +87,46 @@ __Z_INLINE zxerr_t compressPubkey(const uint8_t *pubkey, uint16_t pubkeyLen, uin
     return zxerr_ok;
 }
 
+
+static zxerr_t crypto_hashBuffer(const uint8_t *input, const uint16_t inputLen,
+                          uint8_t *output, uint16_t outputLen) {
+
+    switch (encoding) {
+        case BECH32_COSMOS: {
+            cx_hash_sha256(input, inputLen, output, outputLen);
+            break;
+        }
+
+        case BECH32_ETH: {
+            cx_sha3_t sha3 = {0};
+            cx_err_t status = cx_keccak_init_no_throw(&sha3, 256);
+            if (status != CX_OK) {
+                 return zxerr_ledger_api_error;
+            }
+            status = cx_hash_no_throw((cx_hash_t*) &sha3, CX_LAST, input, inputLen, output, outputLen);
+            if (status != CX_OK) {
+                return zxerr_ledger_api_error;
+            }
+            break;
+        }
+
+        default:
+            return zxerr_unknown;
+    }
+    return zxerr_ok;
+}
+
 zxerr_t crypto_sign(uint8_t *signature,
-                    uint16_t signatureMaxlen,
-                    uint16_t *sigSize) {
+                   uint16_t signatureMaxlen,
+                   uint16_t *sigSize) {
     uint8_t messageDigest[CX_SHA256_SIZE] = {0};
 
     // Hash it
     const uint8_t *message = tx_get_buffer();
     const uint16_t messageLen = tx_get_buffer_length();
+
+    CHECK_ZXERR(crypto_hashBuffer(message, messageLen, messageDigest, CX_SHA256_SIZE))
+    CHECK_APP_CANARY()
 
     switch (encoding) {
         case BECH32_COSMOS: {
@@ -204,7 +235,6 @@ zxerr_t crypto_fillAddress(uint8_t *buffer, uint16_t buffer_len, uint16_t *addrR
     CHECK_ZXERR(crypto_extractUncompressedPublicKey(hdPath, uncompressedPubkey, sizeof(uncompressedPubkey)))
     CHECK_ZXERR(compressPubkey(uncompressedPubkey, sizeof(uncompressedPubkey), buffer, buffer_len))
     char *addr = (char *) (buffer + PK_LEN_SECP256K1);
-    CHECK_ZXERR(bech32EncodeFromBytes(addr, buffer_len - PK_LEN_SECP256K1, bech32_hrp, hashed2_pk, CX_RIPEMD160_SIZE, 1, BECH32_ENCODING_BECH32))
 
     uint8_t hashed1_pk[CX_SHA256_SIZE] = {0};
 

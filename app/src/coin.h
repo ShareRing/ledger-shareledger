@@ -14,7 +14,6 @@
 *  limitations under the License.
 ********************************************************************************/
 #pragma once
-#include "stdbool.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -35,11 +34,6 @@ extern "C" {
 typedef enum {
     addr_secp256k1 = 0,
 } address_kind_e;
-
-typedef enum {
-    tx_json = 0,
-    tx_textual
-} tx_type_e;
 
 typedef enum {
     BECH32_COSMOS = 0,
