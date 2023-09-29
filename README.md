@@ -5,7 +5,18 @@
 
 This project contains the Shareledger app for Ledger Nano S, Nano S Plus and X. This project is forked from [Ledger Cosmos app](https://github.com/LedgerHQ/app-cosmos).
 
-- Ledger Nano S/S Plus/X Shareledger app
+![zondax_light](docs/zondax_light.png#gh-light-mode-only)
+![zondax_dark](docs/zondax_dark.png#gh-dark-mode-only)
+
+_Please visit our website at [zondax.ch](zondax.ch)_
+
+You can also visit [Zondax Hub](https://hub.zondax.ch/cosmos) to test any of the versions of the app
+
+---
+
+This project contains the Cosmos app for Ledger Nano S, Nano S+, X and Stax.
+
+- Ledger Nano S/S+/X/Stax Cosmos app
 - Specs / Documentation
 - C++ unit tests
 - Zemu tests
