@@ -74,11 +74,7 @@ ifneq ($(TARGET_NAME),TARGET_NANOS)
     DEFINES += COMPILE_TEXTUAL
 endif
 
-APP_STACK_MIN_SIZE := 1600
-
-include $(CURDIR)/../deps/ledger-zxlib/makefiles/Makefile.platform
-CFLAGS += -I$(MY_DIR)/../deps/tinycbor/src
-APP_SOURCE_PATH += $(MY_DIR)/../deps/tinycbor-ledger
+DEFINES += HAVE_SHA3 HAVE_HASH HAVE_BLAKE2 HAVE_SHA256 HAVE_SHA512
 APP_SOURCE_PATH += $(MY_DIR)/../deps/jsmn/src
 
 .PHONY: rust
