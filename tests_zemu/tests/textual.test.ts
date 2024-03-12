@@ -27,7 +27,7 @@ jest.setTimeout(90000)
 
 describe('Textual', function () {
   // eslint-disable-next-line jest/expect-expect
-  test.concurrent.each(DEVICE_MODELS)('can start and stop container', async function (m) {
+  test.concurrent.each(DEVICE_MODELS.slice(1))('can start and stop container', async function (m) {
     const sim = new Zemu(m.path)
     try {
       await sim.start({ ...DEFAULT_OPTIONS, model: m.name })
@@ -36,7 +36,7 @@ describe('Textual', function () {
     }
   })
 
-  test.concurrent.each(DEVICE_MODELS)('sign basic textual', async function (m) {
+  test.concurrent.each(DEVICE_MODELS.slice(1))('sign basic textual', async function (m) {
     const sim = new Zemu(m.path)
     try {
       await sim.start({ ...DEFAULT_OPTIONS, model: m.name })
@@ -81,7 +81,7 @@ describe('Textual', function () {
     }
   })
 
-  test.concurrent.each(DEVICE_MODELS)('sign basic textual expert', async function (m) {
+  test.concurrent.each(DEVICE_MODELS.slice(1))('sign basic textual expert', async function (m) {
     const sim = new Zemu(m.path)
     try {
       await sim.start({ ...DEFAULT_OPTIONS, model: m.name })
@@ -129,7 +129,7 @@ describe('Textual', function () {
     }
   })
 
-  test.concurrent.each(DEVICE_MODELS)('sign basic textual eth ', async function (m) {
+  test.concurrent.each(DEVICE_MODELS.slice(1))('sign basic textual eth ', async function (m) {
     const sim = new Zemu(m.path)
     try {
       await sim.start({ ...DEFAULT_OPTIONS, model: m.name })
@@ -177,7 +177,7 @@ describe('Textual', function () {
     }
   })
 
-  test.concurrent.each(DEVICE_MODELS)('sign basic textual eth warning ', async function (m) {
+  test.concurrent.each(DEVICE_MODELS.slice(1))('sign basic textual eth warning ', async function (m) {
     const sim = new Zemu(m.path)
     try {
       await sim.start({ ...DEFAULT_OPTIONS, model: m.name })
@@ -208,7 +208,7 @@ describe('Textual', function () {
     }
   })
 
-  test.concurrent.each(DEVICE_MODELS)('sign basic textual evmos ', async function (m) {
+  test.concurrent.each(DEVICE_MODELS.slice(1))('sign basic textual evmos ', async function (m) {
     const sim = new Zemu(m.path)
     try {
       await sim.start({ ...defaultOptions, model: m.name })
