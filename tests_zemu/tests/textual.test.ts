@@ -1,5 +1,5 @@
 /** ******************************************************************************
- *  (c) 2018-2022 Zondax GmbH
+ *  (c) 2018 - 2024 Zondax AG
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  *  limitations under the License.
  ******************************************************************************* */
 
-import Zemu from '@zondax/zemu'
+import Zemu, { ClickNavigation, TouchNavigation, isTouchDevice } from '@zondax/zemu'
 // @ts-ignore
 import { CosmosApp } from '@zondax/ledger-cosmos-js'
 import { DEFAULT_OPTIONS, DEVICE_MODELS, tx_sign_textual, TEXTUAL_TX } from './common'
@@ -22,12 +22,16 @@ import { DEFAULT_OPTIONS, DEVICE_MODELS, tx_sign_textual, TEXTUAL_TX } from './c
 import secp256k1 from 'secp256k1/elliptic'
 // @ts-ignore
 import crypto from 'crypto'
+import { ButtonKind, IButton, SwipeDirection } from '@zondax/zemu/dist/types'
 
 jest.setTimeout(90000)
 
+// Textual mode is not available for NanoS
+const TEXTUAL_MODELS = DEVICE_MODELS.filter(m => m.name !== 'nanos')
+
 describe('Textual', function () {
   // eslint-disable-next-line jest/expect-expect
-  test.concurrent.each(DEVICE_MODELS.slice(1))('can start and stop container', async function (m) {
+  test.concurrent.each(TEXTUAL_MODELS)('can start and stop container', async function (m) {
     const sim = new Zemu(m.path)
     try {
       await sim.start({ ...DEFAULT_OPTIONS, model: m.name })
@@ -36,7 +40,7 @@ describe('Textual', function () {
     }
   })
 
-  test.concurrent.each(DEVICE_MODELS.slice(1))('sign basic textual', async function (m) {
+  test.concurrent.each(TEXTUAL_MODELS)('sign basic textual', async function (m) {
     const sim = new Zemu(m.path)
     try {
       await sim.start({ ...DEFAULT_OPTIONS, model: m.name })
@@ -81,7 +85,7 @@ describe('Textual', function () {
     }
   })
 
-  test.concurrent.each(DEVICE_MODELS.slice(1))('sign basic textual expert', async function (m) {
+  test.concurrent.each(TEXTUAL_MODELS)('sign basic textual expert', async function (m) {
     const sim = new Zemu(m.path)
     try {
       await sim.start({ ...DEFAULT_OPTIONS, model: m.name })
@@ -129,7 +133,7 @@ describe('Textual', function () {
     }
   })
 
-  test.concurrent.each(DEVICE_MODELS.slice(1))('sign basic textual eth ', async function (m) {
+  test.concurrent.each(TEXTUAL_MODELS)('sign basic textual eth ', async function (m) {
     const sim = new Zemu(m.path)
     try {
       await sim.start({ ...DEFAULT_OPTIONS, model: m.name })
@@ -177,7 +181,7 @@ describe('Textual', function () {
     }
   })
 
-  test.concurrent.each(DEVICE_MODELS.slice(1))('sign basic textual eth warning ', async function (m) {
+  test.concurrent.each(TEXTUAL_MODELS)('sign basic textual eth warning ', async function (m) {
     const sim = new Zemu(m.path)
     try {
       await sim.start({ ...DEFAULT_OPTIONS, model: m.name })
@@ -197,7 +201,22 @@ describe('Textual', function () {
 
       // Wait until we are not in the main menu
       await sim.waitUntilScreenIsNot(sim.getMainMenuSnapshot())
-      await sim.navigateAndCompareSnapshots('.', `${m.prefix.toLowerCase()}-textual-sign_basic_eth_warning`, [1,0], false)
+      let nav = undefined;
+      if (isTouchDevice(m.name)) {
+        const okButton: IButton = {
+          x: 200,
+          y: 540,
+          delay: 0.25,
+          direction: SwipeDirection.NoSwipe,
+        };
+        nav = new TouchNavigation(m.name, [
+          ButtonKind.ConfirmYesButton,
+        ]);
+        nav.schedule[0].button = okButton;
+      } else {
+        nav = new ClickNavigation([1, 0]);
+      }
+      await sim.navigate('.', `${m.prefix.toLowerCase()}-textual-sign_basic_eth_warning`, nav.schedule);
 
       const resp = await signatureRequest
       console.log(resp)
@@ -208,7 +227,7 @@ describe('Textual', function () {
     }
   })
 
-  test.concurrent.each(DEVICE_MODELS.slice(1))('sign basic textual evmos ', async function (m) {
+  test.concurrent.each(TEXTUAL_MODELS)('sign basic textual evmos ', async function (m) {
     const sim = new Zemu(m.path)
     try {
       await sim.start({ ...defaultOptions, model: m.name })

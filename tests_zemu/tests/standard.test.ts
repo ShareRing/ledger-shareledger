@@ -1,5 +1,5 @@
 /** ******************************************************************************
- *  (c) 2018 - 2023 Zondax AG
+ *  (c) 2018 - 2024 Zondax AG
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -14,15 +14,12 @@
  *  limitations under the License.
  ******************************************************************************* */
 
-import Zemu, { zondaxMainmenuNavigation, ButtonKind, ClickNavigation, TouchNavigation } from '@zondax/zemu'
+import Zemu, { zondaxMainmenuNavigation, ButtonKind, isTouchDevice } from '@zondax/zemu'
 import { CosmosApp } from '@zondax/ledger-cosmos-js'
-import { defaultOptions, DEVICE_MODELS, example_tx_str_basic, example_tx_str_basic2, ibc_denoms } from './common'
+import { defaultOptions, DEVICE_MODELS } from './common'
 
 // @ts-ignore
-import secp256k1 from 'secp256k1/elliptic'
-// @ts-ignore
-import crypto from 'crypto'
-import { ActionKind, IButton, INavElement } from '@zondax/zemu/dist/types'
+// import secp256k1 from 'secp256k1/elliptic'
 
 jest.setTimeout(90000)
 
@@ -98,8 +95,8 @@ describe('Standard', function () {
       await sim.start({
         ...defaultOptions,
         model: m.name,
-        approveKeyword: m.name === 'stax' ? 'QR' : '',
-        approveAction: ButtonKind.ApproveTapButton,
+        approveKeyword: isTouchDevice(m.name) ? 'Confirm' : '',
+        approveAction: ButtonKind.DynamicTapButton,
       })
       const app = new CosmosApp(sim.getTransport())
 
@@ -127,14 +124,14 @@ describe('Standard', function () {
     }
   })
 
-    test.concurrent.each(DEVICE_MODELS)('show Eth address', async function (m) {
+  test.concurrent.each(DEVICE_MODELS)('show Eth address', async function (m) {
     const sim = new Zemu(m.path)
     try {
       await sim.start({
         ...defaultOptions,
         model: m.name,
-        approveKeyword: m.name === 'stax' ? 'Path' : '',
-        approveAction: ButtonKind.ApproveTapButton,
+        approveKeyword: isTouchDevice(m.name) ? 'Confirm' : '',
+        approveAction: ButtonKind.DynamicTapButton,
       })
       const app = new CosmosApp(sim.getTransport())
 
@@ -186,8 +183,8 @@ describe('Standard', function () {
       await sim.start({
         ...defaultOptions,
         model: m.name,
-        approveKeyword: m.name === 'stax' ? 'QR' : '',
-        approveAction: ButtonKind.ApproveTapButton,
+        approveKeyword: isTouchDevice(m.name) ? 'Confirm' : '',
+        approveAction: ButtonKind.DynamicTapButton,
       })
       const app = new CosmosApp(sim.getTransport())
 
@@ -209,8 +206,8 @@ describe('Standard', function () {
       await sim.start({
         ...defaultOptions,
         model: m.name,
-        approveKeyword: m.name === 'stax' ? 'Path' : '',
-        approveAction: ButtonKind.ApproveTapButton,
+        approveKeyword: isTouchDevice(m.name) ? 'Confirm' : '',
+        approveAction: ButtonKind.DynamicTapButton,
       })
       const app = new CosmosApp(sim.getTransport())
 

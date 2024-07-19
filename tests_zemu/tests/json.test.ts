@@ -1,5 +1,5 @@
 /** ******************************************************************************
- *  (c) 2018-2022 Zondax GmbH
+ *  (c) 2018 - 2024 Zondax AG
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  *  limitations under the License.
  ******************************************************************************* */
 
-import Zemu from '@zondax/zemu'
+import Zemu, { ClickNavigation, TouchNavigation, isTouchDevice } from '@zondax/zemu'
 // @ts-ignore
 import { CosmosApp } from '@zondax/ledger-cosmos-js'
 import {
@@ -33,6 +33,7 @@ import {
 import secp256k1 from 'secp256k1/elliptic'
 // @ts-ignore
 import crypto from 'crypto'
+import { ButtonKind, IButton, SwipeDirection } from '@zondax/zemu/dist/types'
 
 jest.setTimeout(120000)
 
@@ -407,6 +408,106 @@ describe('Json', function () {
 
       const signatureOk = secp256k1.ecdsaVerify(signature, msgHash, pk)
       expect(signatureOk).toEqual(true)
+    } finally {
+      await sim.close()
+    }
+  })
+
+  test.concurrent.each(DEVICE_MODELS)('sign basic normal Eth', async function (m) {
+    const sim = new Zemu(m.path)
+    try {
+      await sim.start({ ...defaultOptions, model: m.name })
+      const app = new CosmosApp(sim.getTransport())
+
+      // Enable expert to allow sign with eth path
+      await sim.toggleExpertMode();
+
+      const path = [44, 60, 0, 0, 0]
+      const tx = Buffer.from(JSON.stringify(example_tx_str_basic), "utf-8")
+      const hrp = 'inj'
+
+      // check with invalid HRP
+      const errorRespPk = await app.getAddressAndPubKey(path, 'forbiddenHRP')
+      expect(errorRespPk.return_code).toEqual(0x6986)
+      expect(errorRespPk.error_message).toEqual('Transaction rejected')
+
+      // do not wait here..
+      const signatureRequest = app.sign(path, tx, hrp)
+
+      // Wait until we are not in the main menu
+      await sim.waitUntilScreenIsNot(sim.getMainMenuSnapshot())
+      await sim.compareSnapshotsAndApprove('.', `${m.prefix.toLowerCase()}-sign_basic_eth`)
+
+      const resp = await signatureRequest
+      console.log(resp)
+
+      expect(resp.return_code).toEqual(0x9000)
+      expect(resp.error_message).toEqual('No errors')
+      expect(resp).toHaveProperty('signature')
+
+      // get address / publickey
+      const respPk = await app.getAddressAndPubKey(path, hrp)
+      expect(respPk.return_code).toEqual(0x9000)
+      expect(respPk.error_message).toEqual('No errors')
+      console.log(respPk)
+
+      // Now verify the signature
+      const sha3 = require('js-sha3')
+      const msgHash = Buffer.from(sha3.keccak256(tx), 'hex')
+
+      const signatureDER = resp.signature
+      const signature = secp256k1.signatureImport(Uint8Array.from(signatureDER))
+
+      const pk = Uint8Array.from(respPk.compressed_pk)
+
+      const signatureOk = secp256k1.ecdsaVerify(signature, msgHash, pk)
+      expect(signatureOk).toEqual(true)
+    } finally {
+      await sim.close()
+    }
+  })
+
+  test.concurrent.each(DEVICE_MODELS)('sign basic normal Eth no expert', async function (m) {
+    const sim = new Zemu(m.path)
+    try {
+      await sim.start({ ...defaultOptions, model: m.name })
+      const app = new CosmosApp(sim.getTransport())
+
+      const path = [44, 60, 0, 0, 0]
+      const tx = Buffer.from(JSON.stringify(example_tx_str_basic), "utf-8")
+
+      // get address / publickey
+      const respPk = await app.getAddressAndPubKey(path, 'inj')
+      expect(respPk.return_code).toEqual(0x9000)
+      expect(respPk.error_message).toEqual('No errors')
+      console.log(respPk)
+
+      // do not wait here..
+      const signatureRequest = app.sign(path, tx)
+
+      // Wait until we are not in the main menu
+      await sim.waitUntilScreenIsNot(sim.getMainMenuSnapshot())
+      let nav = undefined;
+      if (isTouchDevice(m.name)) {
+        const okButton: IButton = {
+          x: 200,
+          y: 540,
+          delay: 0.25,
+          direction: SwipeDirection.NoSwipe,
+        };
+        nav = new TouchNavigation(m.name, [
+          ButtonKind.ConfirmYesButton,
+        ]);
+        nav.schedule[0].button = okButton;
+      } else {
+        nav = new ClickNavigation([1, 0]);
+      }
+      await sim.navigate('.', `${m.prefix.toLowerCase()}-sign_basic_eth_warning`, nav.schedule);
+
+      const resp = await signatureRequest
+      console.log(resp)
+
+      expect(resp.return_code).toEqual(0x6984)
     } finally {
       await sim.close()
     }
