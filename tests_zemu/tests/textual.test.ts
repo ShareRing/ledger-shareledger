@@ -17,7 +17,7 @@
 import Zemu, { ClickNavigation, TouchNavigation, isTouchDevice } from '@zondax/zemu'
 // @ts-ignore
 import { CosmosApp } from '@zondax/ledger-cosmos-js'
-import { DEFAULT_OPTIONS, DEVICE_MODELS, tx_sign_textual, TEXTUAL_TX } from './common'
+import { defaultOptions, DEVICE_MODELS, tx_sign_textual, TEXTUAL_TX } from './common'
 // @ts-ignore
 import secp256k1 from 'secp256k1/elliptic'
 // @ts-ignore
@@ -34,7 +34,7 @@ describe('Textual', function () {
   test.concurrent.each(TEXTUAL_MODELS)('can start and stop container', async function (m) {
     const sim = new Zemu(m.path)
     try {
-      await sim.start({ ...DEFAULT_OPTIONS, model: m.name })
+      await sim.start({ ...defaultOptions, model: m.name })
     } finally {
       await sim.close()
     }
@@ -43,24 +43,20 @@ describe('Textual', function () {
   test.concurrent.each(TEXTUAL_MODELS)('sign basic textual', async function (m) {
     const sim = new Zemu(m.path)
     try {
-      await sim.start({ ...DEFAULT_OPTIONS, model: m.name })
+      await sim.start({ ...defaultOptions, model: m.name })
       const app = new CosmosApp(sim.getTransport())
 
       const path = [44, 118, 0, 0, 0]
       const tx = Buffer.from(tx_sign_textual, 'hex')
 
       // get address / publickey
-<<<<<<< HEAD
-      const respPk = await app.getAddressAndPubKey(path, hrp)
-=======
       const respPk = await app.getAddressAndPubKey(path, 'shareledger')
->>>>>>> 6a39a8a (SHRL-377: Update testcases)
       expect(respPk.return_code).toEqual(0x9000)
       expect(respPk.error_message).toEqual('No errors')
       console.log(respPk)
 
       // do not wait here..
-      const signatureRequest = app.sign(path, tx, TEXTUAL_TX)
+      const signatureRequest = app.sign(path, tx, hrp, TEXTUAL_TX)
 
       // Wait until we are not in the main menu
       await sim.waitUntilScreenIsNot(sim.getMainMenuSnapshot())
@@ -92,7 +88,7 @@ describe('Textual', function () {
   test.concurrent.each(TEXTUAL_MODELS)('sign basic textual expert', async function (m) {
     const sim = new Zemu(m.path)
     try {
-      await sim.start({ ...DEFAULT_OPTIONS, model: m.name })
+      await sim.start({ ...defaultOptions, model: m.name })
       const app = new CosmosApp(sim.getTransport())
 
       // Change to expert mode so we can skip fields
@@ -100,15 +96,16 @@ describe('Textual', function () {
 
       const path = [44, 118, 0, 0, 0]
       const tx = Buffer.from(tx_sign_textual, 'hex')
+      const hrp = 'shareledger'
 
       // get address / publickey
-      const respPk = await app.getAddressAndPubKey(path, 'shareledger')
+      const respPk = await app.getAddressAndPubKey(path, hrp)
       expect(respPk.return_code).toEqual(0x9000)
       expect(respPk.error_message).toEqual('No errors')
       console.log(respPk)
 
       // do not wait here..
-      const signatureRequest = app.sign(path, tx, TEXTUAL_TX)
+      const signatureRequest = app.sign(path, tx, hrp, TEXTUAL_TX)
 
       // Wait until we are not in the main menu
       await sim.waitUntilScreenIsNot(sim.getMainMenuSnapshot())
@@ -136,12 +133,11 @@ describe('Textual', function () {
       await sim.close()
     }
   })
-<<<<<<< HEAD
 
   test.concurrent.each(TEXTUAL_MODELS)('sign basic textual eth ', async function (m) {
     const sim = new Zemu(m.path)
     try {
-      await sim.start({ ...DEFAULT_OPTIONS, model: m.name })
+      await sim.start({ ...defaultOptions, model: m.name })
       const app = new CosmosApp(sim.getTransport())
 
       // Enable expert to allow sign with eth path
@@ -149,15 +145,16 @@ describe('Textual', function () {
 
       const path = [44, 60, 0, 0, 0]
       const tx = Buffer.from(tx_sign_textual, 'hex')
+      const hrp = 'inj'
 
       // get address / publickey
-      const respPk = await app.getAddressAndPubKey(path, 'inj')
+      const respPk = await app.getAddressAndPubKey(path, hrp)
       expect(respPk.return_code).toEqual(0x9000)
       expect(respPk.error_message).toEqual('No errors')
       console.log(respPk)
 
       // do not wait here..
-      const signatureRequest = app.sign(path, tx, TEXTUAL_TX)
+      const signatureRequest = app.sign(path, tx, hrp, TEXTUAL_TX)
 
       // Wait until we are not in the main menu
       await sim.waitUntilScreenIsNot(sim.getMainMenuSnapshot())
@@ -189,20 +186,21 @@ describe('Textual', function () {
   test.concurrent.each(TEXTUAL_MODELS)('sign basic textual eth warning ', async function (m) {
     const sim = new Zemu(m.path)
     try {
-      await sim.start({ ...DEFAULT_OPTIONS, model: m.name })
+      await sim.start({ ...defaultOptions, model: m.name })
       const app = new CosmosApp(sim.getTransport())
 
       const path = [44, 60, 0, 0, 0]
       const tx = Buffer.from(tx_sign_textual, 'hex')
+      const hrp = 'inj'
 
       // get address / publickey
-      const respPk = await app.getAddressAndPubKey(path, 'inj')
+      const respPk = await app.getAddressAndPubKey(path, hrp)
       expect(respPk.return_code).toEqual(0x9000)
       expect(respPk.error_message).toEqual('No errors')
       console.log(respPk)
 
       // do not wait here..
-      const signatureRequest = app.sign(path, tx, TEXTUAL_TX)
+      const signatureRequest = app.sign(path, tx, hrp, TEXTUAL_TX)
 
       // Wait until we are not in the main menu
       await sim.waitUntilScreenIsNot(sim.getMainMenuSnapshot())
@@ -287,7 +285,3 @@ describe('Textual', function () {
     }
   })
 })
-=======
- })
-
->>>>>>> 6a39a8a (SHRL-377: Update testcases)
