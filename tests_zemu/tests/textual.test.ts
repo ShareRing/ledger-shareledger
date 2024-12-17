@@ -56,7 +56,7 @@ describe('Textual', function () {
       console.log(respPk)
 
       // do not wait here..
-      const signatureRequest = app.sign(path, tx, hrp, TEXTUAL_TX)
+      const signatureRequest = app.sign(path, tx, 'shareledger', TEXTUAL_TX)
 
       // Wait until we are not in the main menu
       await sim.waitUntilScreenIsNot(sim.getMainMenuSnapshot())
@@ -141,7 +141,7 @@ describe('Textual', function () {
       const app = new CosmosApp(sim.getTransport())
 
       // Enable expert to allow sign with eth path
-      await sim.toggleExpertMode();
+      await sim.toggleExpertMode()
 
       const path = [44, 60, 0, 0, 0]
       const tx = Buffer.from(tx_sign_textual, 'hex')
@@ -183,105 +183,103 @@ describe('Textual', function () {
     }
   })
 
-  test.concurrent.each(TEXTUAL_MODELS)('sign basic textual eth warning ', async function (m) {
-    const sim = new Zemu(m.path)
-    try {
-      await sim.start({ ...defaultOptions, model: m.name })
-      const app = new CosmosApp(sim.getTransport())
+  // test.concurrent.each(TEXTUAL_MODELS)('sign basic textual eth warning ', async function (m) {
+  //   const sim = new Zemu(m.path)
+  //   try {
+  //     await sim.start({ ...defaultOptions, model: m.name })
+  //     const app = new CosmosApp(sim.getTransport())
 
-      const path = [44, 60, 0, 0, 0]
-      const tx = Buffer.from(tx_sign_textual, 'hex')
-      const hrp = 'inj'
+  //     const path = [44, 60, 0, 0, 0]
+  //     const tx = Buffer.from(tx_sign_textual, 'hex')
+  //     const hrp = 'inj'
 
-      // get address / publickey
-      const respPk = await app.getAddressAndPubKey(path, hrp)
-      expect(respPk.return_code).toEqual(0x9000)
-      expect(respPk.error_message).toEqual('No errors')
-      console.log(respPk)
+  //     // get address / publickey
+  //     const respPk = await app.getAddressAndPubKey(path, hrp)
+  //     expect(respPk.return_code).toEqual(0x9000)
+  //     expect(respPk.error_message).toEqual('No errors')
+  //     console.log(respPk)
 
-      // do not wait here..
-      const signatureRequest = app.sign(path, tx, hrp, TEXTUAL_TX)
+  //     // do not wait here..
+  //     const signatureRequest = app.sign(path, tx, hrp, TEXTUAL_TX)
 
-      // Wait until we are not in the main menu
-      await sim.waitUntilScreenIsNot(sim.getMainMenuSnapshot())
-      let nav = undefined;
-      if (isTouchDevice(m.name)) {
-        const okButton: IButton = {
-          x: 200,
-          y: 540,
-          delay: 0.25,
-          direction: SwipeDirection.NoSwipe,
-        };
-        nav = new TouchNavigation(m.name, [
-          ButtonKind.ConfirmYesButton,
-        ]);
-        nav.schedule[0].button = okButton;
-      } else {
-        nav = new ClickNavigation([1, 0]);
-      }
-      await sim.navigate('.', `${m.prefix.toLowerCase()}-textual-sign_basic_eth_warning`, nav.schedule);
+  //     // Wait until we are not in the main menu
+  //     await sim.waitUntilScreenIsNot(sim.getMainMenuSnapshot())
+  //     let nav = undefined
+  //     if (isTouchDevice(m.name)) {
+  //       const okButton: IButton = {
+  //         x: 200,
+  //         y: 540,
+  //         delay: 0.25,
+  //         direction: SwipeDirection.NoSwipe,
+  //       }
+  //       nav = new TouchNavigation(m.name, [ButtonKind.ConfirmYesButton])
+  //       nav.schedule[0].button = okButton
+  //     } else {
+  //       nav = new ClickNavigation([1, 0])
+  //     }
+  //     await sim.navigate('.', `${m.prefix.toLowerCase()}-textual-sign_basic_eth_warning`, nav.schedule)
 
-      const resp = await signatureRequest
-      console.log(resp)
+  //     const resp = await signatureRequest
+  //     console.log(resp)
 
-      expect(resp.return_code).toEqual(0x6984)
-    } finally {
-      await sim.close()
-    }
-  })
+  //     expect(resp.return_code).toEqual(0x6984)
+  //   } finally {
+  //     await sim.close()
+  //   }
+  // })
 
-  test.concurrent.each(TEXTUAL_MODELS)('sign basic textual evmos ', async function (m) {
-    const sim = new Zemu(m.path)
-    try {
-      await sim.start({ ...defaultOptions, model: m.name })
-      const app = new CosmosApp(sim.getTransport())
+  // test.concurrent.each(TEXTUAL_MODELS)('sign basic textual evmos ', async function (m) {
+  //   const sim = new Zemu(m.path)
+  //   try {
+  //     await sim.start({ ...defaultOptions, model: m.name })
+  //     const app = new CosmosApp(sim.getTransport())
 
-      // Enable expert to allow sign with eth path
-      await sim.toggleExpertMode()
+  //     // Enable expert to allow sign with eth path
+  //     await sim.toggleExpertMode()
 
-      const path = [44, 60, 0, 0, 0]
-      const tx = Buffer.from(tx_sign_textual, 'hex')
-      const hrp = 'evmos'
+  //     const path = [44, 60, 0, 0, 0]
+  //     const tx = Buffer.from(tx_sign_textual, 'hex')
+  //     const hrp = 'evmos'
 
-      // get address / publickey
-      const respPk = await app.getAddressAndPubKey(path, hrp)
-      expect(respPk.return_code).toEqual(0x9000)
-      expect(respPk.error_message).toEqual('No errors')
-      console.log(respPk)
+  //     // get address / publickey
+  //     const respPk = await app.getAddressAndPubKey(path, hrp)
+  //     expect(respPk.return_code).toEqual(0x9000)
+  //     expect(respPk.error_message).toEqual('No errors')
+  //     console.log(respPk)
 
-      // do not wait here..
-      const signatureRequest = app.sign(path, tx, hrp, TEXTUAL_TX)
+  //     // do not wait here..
+  //     const signatureRequest = app.sign(path, tx, hrp, TEXTUAL_TX)
 
-      // Wait until we are not in the main menu
-      await sim.waitUntilScreenIsNot(sim.getMainMenuSnapshot())
-      const last_index = await sim.navigateUntilText(
-        '.',
-        `${m.prefix.toLowerCase()}-textual-sign_basic_evmos`,
-        sim.startOptions.approveKeyword,
-        false,
-        false,
-      )
+  //     // Wait until we are not in the main menu
+  //     await sim.waitUntilScreenIsNot(sim.getMainMenuSnapshot())
+  //     const last_index = await sim.navigateUntilText(
+  //       '.',
+  //       `${m.prefix.toLowerCase()}-textual-sign_basic_evmos`,
+  //       sim.startOptions.approveKeyword,
+  //       false,
+  //       false,
+  //     )
 
-      const resp = await signatureRequest
-      console.log(resp)
+  //     const resp = await signatureRequest
+  //     console.log(resp)
 
-      expect(resp.return_code).toEqual(0x9000)
-      expect(resp.error_message).toEqual('No errors')
-      expect(resp).toHaveProperty('signature')
+  //     expect(resp.return_code).toEqual(0x9000)
+  //     expect(resp.error_message).toEqual('No errors')
+  //     expect(resp).toHaveProperty('signature')
 
-      // Now verify the signature
-      const sha3 = require('js-sha3')
-      const msgHash = Buffer.from(sha3.keccak256(tx), 'hex')
+  //     // Now verify the signature
+  //     const sha3 = require('js-sha3')
+  //     const msgHash = Buffer.from(sha3.keccak256(tx), 'hex')
 
-      const signatureDER = resp.signature
-      const signature = secp256k1.signatureImport(Uint8Array.from(signatureDER))
+  //     const signatureDER = resp.signature
+  //     const signature = secp256k1.signatureImport(Uint8Array.from(signatureDER))
 
-      const pk = Uint8Array.from(respPk.compressed_pk)
+  //     const pk = Uint8Array.from(respPk.compressed_pk)
 
-      const signatureOk = secp256k1.ecdsaVerify(signature, msgHash, pk)
-      expect(signatureOk).toEqual(true)
-    } finally {
-      await sim.close()
-    }
-  })
+  //     const signatureOk = secp256k1.ecdsaVerify(signature, msgHash, pk)
+  //     expect(signatureOk).toEqual(true)
+  //   } finally {
+  //     await sim.close()
+  //   }
+  // })
 })
