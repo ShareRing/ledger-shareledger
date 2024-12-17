@@ -673,6 +673,87 @@ parser_error_t tx_display_make_friendly() {
     return parser_ok;
 }
 
+static const ascii_subst_t ascii_substitutions[] = {
+    {0x07, 'a'}, {0x08, 'b'}, {0x0C, 'f'},
+    {0x0A, 'n'}, {0x0D, 'r'}, {0x09, 't'},
+    {0x0B, 'v'}, {0x5C, '\\'},
+};
+
+parser_error_t tx_display_translation(char *dst, uint16_t dstLen, char *src, uint16_t srcLen) {
+    MEMZERO(dst, dstLen);
+    char *p = src;
+    uint16_t count = 0;
+
+    while (p < src + srcLen) {
+        utf8_int32_t tmp_codepoint = 0;
+        p = utf8codepoint(p, &tmp_codepoint);
+
+        if (tmp_codepoint < 0x0F || tmp_codepoint == 0x5C) {
+            bool found = false;
+            for (size_t i = 0; i < array_length(ascii_substitutions); i++) {
+                if ((char)tmp_codepoint == ascii_substitutions[i].ascii_code) {
+                    ASSERT_PTR_BOUNDS(count, dstLen);
+                    *dst++ = '\\';
+                    ASSERT_PTR_BOUNDS(count, dstLen);
+                    *dst++ = ascii_substitutions[i].str;
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                // Write out the value as a hex escape, \xNN
+                if (count > dstLen) {
+                    return parser_unexpected_value;
+                }
+                snprintf(dst, 4, "\\x%.02X", tmp_codepoint);
+                dst += 4;
+            }
+        } else if (tmp_codepoint >= 32 && tmp_codepoint<=((int32_t) 0x7F)) {
+            ASSERT_PTR_BOUNDS(count, dstLen);
+            *dst++ = (char) tmp_codepoint;
+        } else {
+            ASSERT_PTR_BOUNDS(count, dstLen);
+            *dst++ = '\\';
+
+            uint8_t bytes_to_print = 8;
+            int32_t swapped = ZX_SWAP(tmp_codepoint);
+            if (tmp_codepoint > 0xFFFF) {
+                ASSERT_PTR_BOUNDS(count, dstLen);
+                *dst++ = 'U';
+            } else {
+                ASSERT_PTR_BOUNDS(count, dstLen);
+                *dst++ = 'u';
+                bytes_to_print = 4;
+                swapped = (swapped >> 16) & 0xFFFF;
+            }
+
+            if (dstLen < (bytes_to_print + count)) {
+                return parser_unexpected_value;
+            }
+
+            char buf[18] = {0};
+            array_to_hexstr(buf, sizeof(buf), (uint8_t *) &swapped, 4);
+            for (int i = 0; i < bytes_to_print; i++) {
+                ASSERT_PTR_BOUNDS(count, dstLen);
+                *dst++ = (buf[i] >= 'a' && buf[i] <= 'z') ? (buf[i] - 32) : buf[i];
+            }
+        }
+    }
+
+    if (src[srcLen - 1] == ' ' || src[srcLen - 1] == '@') {
+        if (src[dstLen - 1] + 1 > dstLen) {
+            return parser_unexpected_value;
+        }
+        ASSERT_PTR_BOUNDS(count, dstLen);
+        *dst++ = '@';
+    }
+
+    // Terminate string
+    ASSERT_PTR_BOUNDS(count, dstLen);
+    *dst = 0;
+    return parser_ok;
+}
+
 #ifdef __cplusplus
 #pragma clang diagnostic pop
 #endif

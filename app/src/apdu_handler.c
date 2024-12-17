@@ -132,10 +132,6 @@ static bool process_chunk(volatile uint32_t *tx, uint32_t rx) {
 
     const uint8_t payloadType = G_io_apdu_buffer[OFFSET_PAYLOAD_TYPE];
 
-    if (G_io_apdu_buffer[OFFSET_P2] != 0) {
-        THROW(APDU_CODE_INVALIDP1P2);
-    }
-
     if (rx < OFFSET_DATA) {
         THROW(APDU_CODE_WRONG_LENGTH);
     }
@@ -146,7 +142,6 @@ static bool process_chunk(volatile uint32_t *tx, uint32_t rx) {
             tx_initialize();
             tx_reset();
             extractHDPath_HRP(rx, OFFSET_DATA);
-
             return false;
         case P1_ADD:
             added = tx_append(&(G_io_apdu_buffer[OFFSET_DATA]), rx - OFFSET_DATA);
@@ -199,6 +194,9 @@ __Z_INLINE void handleSign(volatile uint32_t *flags, volatile uint32_t *tx, uint
         THROW(APDU_CODE_OK);
     }
 
+    // Let grab P2 value and if it's not valid, the parser should reject it
+    const tx_type_e sign_type = (tx_type_e) G_io_apdu_buffer[OFFSET_P2];
+
     if ((hdPath[1] == HDPATH_ETH_1_DEFAULT) && !app_mode_expert()) {
         *flags |= IO_ASYNCH_REPLY;
         view_custom_error_show(PIC(msg_error1),PIC(msg_error2));
@@ -249,7 +247,7 @@ void handleApdu(volatile uint32_t *flags, volatile uint32_t *tx, uint32_t rx) {
 
                 case INS_SIGN_SECP256K1: {
                     CHECK_PIN_VALIDATED()
-                    handleSignSecp256K1(flags, tx, rx);
+                    handleSign(flags, tx, rx);
                     break;
                 }
 

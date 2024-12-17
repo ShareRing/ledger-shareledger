@@ -69,4 +69,3 @@ __Z_INLINE bool is_msg_from_field(char *field_name) {
 }
 #pragma clang diagnostic pop
 #endif
-
