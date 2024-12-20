@@ -85,7 +85,7 @@
       "11 | >>>--- [2/2] : jppp2h3afe5h6pkh5t",
       "12 | >>>Amount : 10 ATOM",
       "13 |   : End of Message",
-      "14 | Memo : > \\u269B\\uFE0F\\u269B\\u269B\\uFE0F     @",
+      "14 | Memo : > \\u269B\\uFE0F\\\\u269B\\u269B\\uFE0F     @",
       "15 | Fees : 0.002 ATOM",
       "16 | Gas limit : 100'000",
       "17 | --- [1/3] : Hash of raw bytes: 9c043290109c270b2ffa",

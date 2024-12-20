@@ -109,7 +109,6 @@ describe('Standard', function () {
       await sim.compareSnapshotsAndApprove('.', `${m.prefix.toLowerCase()}-show_address`)
 
       const resp = await respRequest
-      console.log('TQTTTTTTTTTTTTTTTT', resp)
 
       expect(resp.return_code).toEqual(0x9000)
       expect(resp.error_message).toEqual('No errors')
